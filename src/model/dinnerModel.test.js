@@ -116,4 +116,22 @@ describe("DinnerModel", () => {
       expect(model.getFullMenu()).to.not.include(model.getDish(1));
     });
   });
+
+  // Add tests for getting ingredients and calculating price
+  describe("price", () => {
+    it("gets ingredients", () => {
+      model.addDishToMenu(1);
+      
+      expect(model.getAllIngredients()).to.include(model.getDish(1).ingredients[0]);
+      expect(model.getAllIngredients()).to.include(model.getDish(1).ingredients[1]);
+    });
+
+    it("calculates price", () => {
+      model.setNumberOfGuests(2);
+      model.addDishToMenu(1);
+      model.addDishToMenu(100);
+
+      expect(model.getTotalMenuPrice()).to.equal(180);
+    });
+  });
 });

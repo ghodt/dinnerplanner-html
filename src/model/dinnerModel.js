@@ -40,7 +40,6 @@ class DinnerModel {
   getFullMenu() {
     //TODO Lab 0
     for(let dish of this.dinnerMenu){
-      console.log(dish);
     }
     return this.dinnerMenu;
   }
@@ -48,26 +47,39 @@ class DinnerModel {
   //Returns all ingredients for all the dishes on the menu.
   getAllIngredients() {
     //TODO Lab 0
-
+    let ingredients = [];
+    for(let dish of this.dinnerMenu){
+      for(let ingredient of dish.ingredients){
+        ingredients.push(ingredient);
+      }
+    }
+    return ingredients;
   }
 
   //Returns the total price of the menu (all the ingredients multiplied by number of guests).
   getTotalMenuPrice() {
     //TODO Lab 0
+    let totalPrice = 0;
+    console.log(this.getFullMenu());
+    let ingredientList = this.getAllIngredients();
+    console.log(ingredientList);
+    for(let ingredient of ingredientList){
+      totalPrice += ingredient.price;
+    }
+    console.log(totalPrice);
+    return totalPrice * this.numberOfGuests;
   }
 
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
   addDishToMenu(id) {
     //TODO Lab 0
-    console.log("innan");
-    var dish = getDish(id);
-    console.log("efter")
-    let oldDish = getSelectedDish(dish.type);
-    if(typeof oldDish !== 'undefined'){
-      removeDishFromMenu(oldDish.id);
+    const newDish = this.getDish(id);
+    const oldDish = this.getSelectedDish(newDish.type);
+    if(oldDish !== undefined){
+      this.removeDishFromMenu(oldDish.id);
     }
-    this.dinnerMenu.push(dish);
+    this.dinnerMenu.push(newDish);
   }
 
   //Removes dish from menu
@@ -76,7 +88,7 @@ class DinnerModel {
     var index = -1
     for(let dish of this.dinnerMenu){
       if(dish.id == id){
-        index = this.dinnerMenu.indexOf(dish)
+        index = this.dinnerMenu.indexOf(dish);
         break;
       }
     }
@@ -91,7 +103,7 @@ class DinnerModel {
   //if you don't pass any query, all the dishes will be returned
   getAllDishes(type, query) {
     return this.dishes.filter(function (dish) {
-      //Hotfix
+      //If no type or query is specified
       if(type == undefined && query == undefined){
         return true;
       }
@@ -106,7 +118,7 @@ class DinnerModel {
         if (dish.name.indexOf(query) !== -1) {
           found = true;
         }
-        if(type == undefined){
+        if(type == ""){
           return found;
         }
       }
