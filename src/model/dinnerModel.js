@@ -7,30 +7,48 @@ class DinnerModel {
     //TODO Lab 0
     // implement the data structure that will hold number of guests
     // and selected dishes for the dinner menu
+    this.numberOfGuests = 0;
+    this.dinnerMenu = [];
 
   }
 
   setNumberOfGuests(num) {
     //TODO Lab 0
+    // If num is negative numberOfGuests will not change
+    if(num >= 0){
+      this.numberOfGuests = num;
+    }
   }
 
   getNumberOfGuests() {
     //TODO Lab 0
+    return this.numberOfGuests;
   }
 
-  //Returns the dish that is on the menu for selected type 
+  //Returns the dish that is on the menu for selected type
   getSelectedDish(type) {
     //TODO Lab 0
+    for(let dish of this.dinnerMenu){
+      if(dish.type == type){
+        return dish;
+      }
+    }
+    return undefined;
   }
 
   //Returns all the dishes on the menu.
   getFullMenu() {
     //TODO Lab 0
+    for(let dish of this.dinnerMenu){
+      console.log(dish);
+    }
+    return this.dinnerMenu;
   }
 
   //Returns all ingredients for all the dishes on the menu.
   getAllIngredients() {
     //TODO Lab 0
+
   }
 
   //Returns the total price of the menu (all the ingredients multiplied by number of guests).
@@ -41,12 +59,30 @@ class DinnerModel {
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
   addDishToMenu(id) {
-    //TODO Lab 0 
+    //TODO Lab 0
+    console.log("innan");
+    var dish = getDish(id);
+    console.log("efter")
+    let oldDish = getSelectedDish(dish.type);
+    if(typeof oldDish !== 'undefined'){
+      removeDishFromMenu(oldDish.id);
+    }
+    this.dinnerMenu.push(dish);
   }
 
   //Removes dish from menu
   removeDishFromMenu(id) {
     //TODO Lab 0
+    var index = -1
+    for(let dish of this.dinnerMenu){
+      if(dish.id == id){
+        index = this.dinnerMenu.indexOf(dish)
+        break;
+      }
+    }
+    if(index > -1){
+        delete this.dinnerMenu[index]
+    }
   }
 
 
@@ -55,6 +91,10 @@ class DinnerModel {
   //if you don't pass any query, all the dishes will be returned
   getAllDishes(type, query) {
     return this.dishes.filter(function (dish) {
+      //Hotfix
+      if(type == undefined && query == undefined){
+        return true;
+      }
       let found = true;
       if (query) {
         found = false;
@@ -65,6 +105,9 @@ class DinnerModel {
         });
         if (dish.name.indexOf(query) !== -1) {
           found = true;
+        }
+        if(type == undefined){
+          return found;
         }
       }
       return dish.type === type && found;
@@ -82,11 +125,11 @@ class DinnerModel {
   }
 }
 
-// the dishes constant contains an array of all the 
+// the dishes constant contains an array of all the
 // dishes in the database. Each dish has id, name, type,
 // image (name of the image file), description and
-// array of ingredients. Each ingredient has name, 
-// quantity (a number), price (a number) and unit (string 
+// array of ingredients. Each ingredient has name,
+// quantity (a number), price (a number) and unit (string
 // defining the unit i.e. "g", "slices", "ml". Unit
 // can sometimes be empty like in the example of eggs where
 // you just say "5 eggs" and not "5 pieces of eggs" or anything else.
@@ -349,4 +392,3 @@ function deepFreeze(o) {
 }
 
 deepFreeze(dishesConst);
-
