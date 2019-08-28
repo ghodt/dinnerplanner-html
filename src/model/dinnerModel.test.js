@@ -121,7 +121,7 @@ describe("DinnerModel", () => {
   describe("price", () => {
     it("gets ingredients", () => {
       model.addDishToMenu(1);
-      
+
       expect(model.getAllIngredients()).to.include(model.getDish(1).ingredients[0]);
       expect(model.getAllIngredients()).to.include(model.getDish(1).ingredients[1]);
     });
