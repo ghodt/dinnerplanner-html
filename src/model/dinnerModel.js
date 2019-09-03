@@ -62,39 +62,31 @@ class DinnerModel {
   //query argument, text, if passed only returns dishes that contain the query in name or one of the ingredients.
   //if you don't pass any query, all the dishes will be returned
   // FIX
-  getAllDishes(type, query) {
-    return this.dishes.filter(function (dish) {
-      //If no type or query is specified
-      if(type == undefined && query == undefined){
-        return true;
-      }
-      let found = true;
-      if (query) {
-        found = false;
-        dish.ingredients.forEach(function (ingredient) {
-          if (ingredient.name.indexOf(query) !== -1) {
-            found = true;
-          }
-        });
-        if (dish.name.indexOf(query) !== -1) {
-          found = true;
-        }
-        if(type == ""){
-          return found;
-        }
-      }
-      return dish.type === type && found;
-    });
+  async getAllDishes(type, query) {
+    if(type == undefined) {
+      type = "";
+    }
+    if(query == undefined) {
+      query = "";
+    }
+
+    let dishes = await fetch("http://sunset.nada.kth.se:8080/iprog/group/2/recipes/search?type=" + type + "&query=" + query, {
+      headers: this.auth
+    })
+    .then(response => response.json())
+    .then(data => data.results);
+    return dishes;
   }
 
   //Returns a dish of specific ID
 
   async getDish(id) {
-    return fetch("http://sunset.nada.kth.se:8080/iprog/group/2/recipes/" + id + "/information", {
-      headers:  this.auth
+    let dish = await fetch("http://sunset.nada.kth.se:8080/iprog/group/2/recipes/" + id + "/information", {
+      headers: this.auth
     })
     .then(response => response.json())
     .catch(console.error());
+    return dish;
   }
 }
 
