@@ -38,13 +38,16 @@ class DinnerModel {
 
   //Returns the total price of the menu (all the ingredients multiplied by number of guests).
   getTotalMenuPrice() {
+    if(this.dinnerMenu.length == 0) {
+      return 0;
+    }
   //  console.log(this.dinnerMenu[0].pricePerServing);
     //console.log(this.getFullMenu()[0].pricePerServing);
     let cost = 0;
     this.dinnerMenu.forEach(dish => {
       cost += dish.pricePerServing;
     });
-    return (cost * 2);
+    return cost * 2;
   }
 
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
@@ -59,7 +62,13 @@ class DinnerModel {
 
   //Removes dish from menu
   removeDishFromMenu(id) {
+    if(this.dinnerMenu.length == 0) {
+      return;
+    }
+  //  if(this.dinnerMenu.find(dish => dish.id == dish) != undefined) {
+  //    console.log(this.dinnerMenu.find(dish => dish.id == dish));
     this.dinnerMenu.splice(this.dinnerMenu.indexOf(this.dinnerMenu.find(dish => dish.id == dish)), 1);
+  //  }
   }
 
 
@@ -79,7 +88,8 @@ class DinnerModel {
       headers: this.auth
     })
     .then(response => response.json())
-    .then(data => data.results);
+    .then(data => data.results)
+    .catch(console.error);
     return dishes;
   }
 
@@ -110,4 +120,4 @@ function deepFreeze(o) {
   });
 }
 
-deepFreeze(dishesConst);
+//deepFreeze(dishesConst);
