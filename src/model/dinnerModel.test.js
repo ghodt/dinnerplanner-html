@@ -89,7 +89,29 @@ describe("DinnerModel", () => {
         expect(model.getFullMenu()).to.not.include(data);
         done();
       });
-    }).timeout(10000);
+    }).timeout(100000);
+  });
+
+  // Add tests for getting ingredients and calculating price
+  describe("price", () => {
+    /*it("gets ingredients", () => {
+      let dish = model.getDish(1);
+      model.addDishToMenu(dish);
+
+      expect(model.getAllIngredients()).to.include(model.getDish(dish).ingredients[0]);
+      expect(model.getAllIngredients()).to.include(model.getDish(dish).ingredients[1]);
+    });*/
+
+    it("calculates price", () => {
+      model.setNumberOfGuests(2);
+      let numOfGuests = model.getNumberOfGuests();
+      model.getDish(559251)
+      .then((dish) => {
+        model.addDishToMenu(dish);
+          expect(model.getTotalMenuPrice()).to.equal(195.59 * numOfGuests);
+          document.getElementById("loader").style.display = "none";
+    });
+  });
   });
 
   describe("loading indicator", () => {
@@ -98,21 +120,5 @@ describe("DinnerModel", () => {
     });
   });
 
-  // Add tests for getting ingredients and calculating price
-  describe("price", () => {
-    it("gets ingredients", () => {
-      model.addDishToMenu(1);
 
-      expect(model.getAllIngredients()).to.include(model.getDish(1).ingredients[0]);
-      expect(model.getAllIngredients()).to.include(model.getDish(1).ingredients[1]);
-    });
-
-    it("calculates price", () => {
-      model.setNumberOfGuests(2);
-      model.addDishToMenu(1);
-      model.addDishToMenu(100);
-
-      expect(model.getTotalMenuPrice()).to.equal(180);
-    });
-  });
 });
