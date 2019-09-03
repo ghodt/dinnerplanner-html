@@ -1,19 +1,19 @@
 //DinnerModel class
+
 class DinnerModel {
 
   constructor() {
     this.dishes = dishesConst;
-
-    //TODO Lab 0
     // implement the data structure that will hold number of guests
     // and selected dishes for the dinner menu
     this.numberOfGuests = 0;
     this.dinnerMenu = [];
+    this.authHeader = {"X-Mashape-Key" : apiKey};
+    this.endpoint = endpoint;
 
   }
 
   setNumberOfGuests(num) {
-    //TODO Lab 0
     // If num is negative numberOfGuests will not change
     if(num >= 0){
       this.numberOfGuests = num;
@@ -21,119 +21,80 @@ class DinnerModel {
   }
 
   getNumberOfGuests() {
-    //TODO Lab 0
     return this.numberOfGuests;
   }
 
   //Returns the dish that is on the menu for selected type
   getSelectedDish(type) {
-    //TODO Lab 0
-    for(let dish of this.dinnerMenu){
-      if(dish.type == type){
-        return dish;
-      }
-    }
-    return undefined;
+    return this.dinnerMenu.find(dish => dish.type == type);
   }
 
   //Returns all the dishes on the menu.
   getFullMenu() {
-    //TODO Lab 0
-    for(let dish of this.dinnerMenu){
-    }
     return this.dinnerMenu;
   }
 
   //Returns all ingredients for all the dishes on the menu.
-  getAllIngredients() {
-    //TODO Lab 0
-    let ingredients = [];
-    for(let dish of this.dinnerMenu){
-      for(let ingredient of dish.ingredients){
-        ingredients.push(ingredient);
-      }
-    }
-    return ingredients;
-  }
+  //Not used in Lab 1
+  // getAllIngredients() {
+  //   return this.dinnerMenu.map((dish) => dish.ingredients).flat();
+  // }
 
   //Returns the total price of the menu (all the ingredients multiplied by number of guests).
   getTotalMenuPrice() {
-    //TODO Lab 0
-    let totalPrice = 0;
-    console.log(this.getFullMenu());
-    let ingredientList = this.getAllIngredients();
-    console.log(ingredientList);
-    for(let ingredient of ingredientList){
-      totalPrice += ingredient.price;
-    }
-    console.log(totalPrice);
-    return totalPrice * this.numberOfGuests;
+    let cost = 0;
+    this.dinnerMenu.forEach(dish => {
+      cost += dish.pricePerServing
+    });
+    return cost * this.numberOfGuests;
   }
 
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
-  addDishToMenu(id) {
-    //TODO Lab 0
-    const newDish = this.getDish(id);
-    const oldDish = this.getSelectedDish(newDish.type);
-    if(oldDish !== undefined){
-      this.removeDishFromMenu(oldDish.id);
-    }
-    this.dinnerMenu.push(newDish);
+  addDishToMenu(dish) {
+    const newDish = dish;
+
+    // Doesn't remove dish of the same type right now
+
+    // const oldDish = this.getSelectedDish(newDish.dishTypes);
+    // if(oldDish !== undefined){
+    //   this.removeDishFromMenu(oldDish.id);
+    // }
+    this.dinnerMenu.push(dish);
   }
 
   //Removes dish from menu
   removeDishFromMenu(id) {
-    //TODO Lab 0
-    var index = -1
-    for(let dish of this.dinnerMenu){
-      if(dish.id == id){
-        index = this.dinnerMenu.indexOf(dish);
-        break;
-      }
-    }
-    if(index > -1){
-        delete this.dinnerMenu[index]
-    }
+    this.dinnerMenu.splice(this.dinnerMenu.indexOf(this.dinnerMenu.find(dish => dish.id == dish)), 1);
   }
-
 
   //Returns all dishes of specific type (i.e. "starter", "main dish" or "dessert").
   //query argument, text, if passed only returns dishes that contain the query in name or one of the ingredients.
   //if you don't pass any query, all the dishes will be returned
-  getAllDishes(type, query) {
-    return this.dishes.filter(function (dish) {
-      //If no type or query is specified
-      if(type == undefined && query == undefined){
-        return true;
-      }
-      let found = true;
-      if (query) {
-        found = false;
-        dish.ingredients.forEach(function (ingredient) {
-          if (ingredient.name.indexOf(query) !== -1) {
-            found = true;
-          }
-        });
-        if (dish.name.indexOf(query) !== -1) {
-          found = true;
-        }
-        if(type == ""){
-          return found;
-        }
-      }
-      return dish.type === type && found;
-    });
+  async getAllDishes(type, query) {
+    if(type == undefined){
+      type = "";
+    }
+    if(query == undefined){
+      query = "";
+    }
+    let dishes = await fetch(this.endpoint + "search?type=" + type + "&query=" + query, {
+        headers: this.authHeader
+      })
+      .then(response => response.json())
+      .then(data => {return data.results})
+      .catch(console.error);
+    return dishes;
   }
 
   //Returns a dish of specific ID
-  getDish(id) {
-    for (let dsh of this.dishes) {
-      if (dsh.id === id) {
-        return dsh;
-      }
-    }
-    return undefined;
+  async getDish(id) {
+    let dish = await fetch(this.endpoint + id + "/information", {
+      headers: this.authHeader
+    })
+    .then(response => response.json())
+    .catch(console.error);
+    return dish;
   }
 }
 

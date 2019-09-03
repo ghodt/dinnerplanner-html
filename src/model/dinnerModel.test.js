@@ -92,27 +92,27 @@ describe("DinnerModel", () => {
     }).timeout(10000);
   });
 
-  describe("loading indicator", () => {
-    it("checks if the loading indicator is still visible on the page", () => {
-      expect(document.getElementById("loader").style.display).to.equal("none");
-    });
-  });
-
   // Add tests for getting ingredients and calculating price
   describe("price", () => {
-    it("gets ingredients", () => {
-      model.addDishToMenu(1);
-      
-      expect(model.getAllIngredients()).to.include(model.getDish(1).ingredients[0]);
-      expect(model.getAllIngredients()).to.include(model.getDish(1).ingredients[1]);
-    });
-
     it("calculates price", () => {
-      model.setNumberOfGuests(2);
-      model.addDishToMenu(1);
-      model.addDishToMenu(100);
+      model.getDish(559251)
+      .then((data) => {
+        model.setNumberOfGuests(2);
+        expect(model.getNumberOfGuests()).to.equal(2);
+        
+        model.addDishToMenu(data);
+        expect(model.getFullMenu().length).to.equal(1);
+        expect(model.getTotalMenuPrice()).to.equal(195.59 * 2);
+        done();
+      });
+    }).timeout(10000);
+  });
 
-      expect(model.getTotalMenuPrice()).to.equal(180);
+  describe("loading indicator", () => {
+    it("checks if the loading indicator is still visible on the page", () => {
+      // Hide loading animation
+      document.getElementById("loader").style.display = "none";
+      expect(document.getElementById("loader").style.display).to.equal("none");
     });
   });
 });
