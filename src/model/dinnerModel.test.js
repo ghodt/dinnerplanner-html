@@ -84,10 +84,12 @@ describe("DinnerModel", () => {
         expect(model.getFullMenu().length).to.equal(1);
         expect(model.getFullMenu()[0].id).to.equal(559251);
 
-        model.removeDishFromMenu(559251);
-        expect(model.getFullMenu().length).to.equal(0);
-        expect(model.getFullMenu()).to.not.include(data);
-        done();
+        model.removeDishFromMenu(559251)
+        .then(function(){
+          expect(model.getFullMenu().length).to.equal(0);
+          expect(model.getFullMenu()).to.not.include(data);
+          done();
+        });
       });
     }).timeout(10000);
   });
@@ -99,7 +101,7 @@ describe("DinnerModel", () => {
       .then((data) => {
         model.setNumberOfGuests(2);
         expect(model.getNumberOfGuests()).to.equal(2);
-        
+
         model.addDishToMenu(data);
         expect(model.getFullMenu().length).to.equal(1);
         expect(model.getTotalMenuPrice()).to.equal(195.59 * 2);
