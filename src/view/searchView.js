@@ -5,10 +5,9 @@ class SearchView {
   }
 
   render(dishId) {
+      this.container.insertAdjacentHTML('beforebegin', header + sidebar);
     var content = /* template */ `
-    <div class="header d-flex align-items-center justify-content-center">
-      <h1>Dinner Planner</h1>
-    </div>
+
     <div class="container text-center full-vh d-flex align-items-center justify-content-center flex-column">
         <div id="search-bar">
           <h2>Find a dish</h2>

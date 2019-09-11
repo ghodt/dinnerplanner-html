@@ -5,6 +5,7 @@ class PrintoutView {
   }
 
   render(dishId) {
+          this.container.insertAdjacentHTML('beforebegin', header);
   }
 
   afterRender() {
