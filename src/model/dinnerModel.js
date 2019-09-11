@@ -49,28 +49,30 @@ class DinnerModel {
 
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
-  addDishToMenu(dish) {
-    const newDish = dish;
-
+  async addDishToMenu(id) {
+    console.log(this.dinnerMenu);
+    const newDish = await this.getDish(id);
+    if(newDish == undefined) {
+      return;
+    }
     // Doesn't remove dish of the same type right now
-
     // const oldDish = this.getSelectedDish(newDish.dishTypes);
     // if(oldDish !== undefined){
     //   this.removeDishFromMenu(oldDish.id);
     // }
-    this.dinnerMenu.push(dish);
+    this.dinnerMenu.push(newDish);
   }
 
   //Removes dish from menu
-  removeDishFromMenu(id) {
+  async removeDishFromMenu(id) {
     if(this.dinnerMenu.length == 0){
       return;
     }
 
-  //  this.getDish(id).then(dish => {
-      //if(dish != undefined){
+     const dish = await this.getDish(id);
+     if(dish != undefined){
         this.dinnerMenu.splice(this.dinnerMenu.indexOf(this.dinnerMenu.find(dish => dish.id == dish)), 1);
-    //  }
+      }
   //  });
   }
 
@@ -87,9 +89,9 @@ class DinnerModel {
     let dishes = await fetch(this.endpoint + "search?type=" + type + "&query=" + query, {
         headers: this.authHeader
       })
-      .then(response => response.json().results)
-    //  .then(data => {return data.results})
-    //  .catch(console.error);
+      .then(response => response.json())
+      .then(data => {return data.results})
+      .catch(console.error);
     return dishes;
   }
 
@@ -98,9 +100,21 @@ class DinnerModel {
     let dish = await fetch(this.endpoint + id + "/information", {
       headers: this.authHeader
     })
-    .then(response => response.json())
-  //  .catch(console.error);
+    .then(function(response) {
+        if (!response.ok) {
+            return response;
+        }
+        return response;
+    })
+    .then(response => response.json());
     return dish;
+  }
+
+  handleErrors(response) {
+      if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response;
   }
 }
 
