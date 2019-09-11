@@ -117,15 +117,6 @@ class DinnerModel {
     return response;
   }
 }
-
-// the dishes constant contains an array of all the
-// dishes in the database. Each dish has id, name, type,
-// image (name of the image file), description and
-// array of ingredients. Each ingredient has name,
-// quantity (a number), price (a number) and unit (string
-// defining the unit i.e. "g", "slices", "ml". Unit
-// can sometimes be empty like in the example of eggs where
-// you just say "5 eggs" and not "5 pieces of eggs" or anything else.
 const dishesConst = [{
   'id': 1,
   'name': 'French toast',
@@ -384,4 +375,4 @@ function deepFreeze(o) {
   });
 }
 
-deepFreeze(dishesConst);
+//deepFreeze(dishesConst);

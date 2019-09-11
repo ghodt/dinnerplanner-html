@@ -34,16 +34,16 @@ describe("DinnerModel", () => {
     });
     it("gets the correct dish", (done) => {
       model.getDish(559251)
-      .then((data) => {
-        expect(data.title).to.equal("Breakfast Pizza");
+      .then((dish) => {
+        expect(dish.title).to.equal("Breakfast Pizza");
         done();
       });
     }).timeout(10000);
 
     it("returns undefined if dish is not found", (done) => {
       model.getDish(-1)
-      .then((data) => {
-        expect(data.code).to.equal(404);
+      .then((dish) => {
+        expect(dish.code).to.equal(404);
         done();
       });
     }).timeout(10000);
@@ -52,18 +52,18 @@ describe("DinnerModel", () => {
   describe("filtering for dishes", () => {
     it("returns all dishes if no args are specified", (done) => {
       model.getAllDishes()
-      .then((data) => {
-        console.log("data length", data.length);
-        expect(data.length).to.equal(10);
+      .then((dish) => {
+        console.log("data length", dish.length);
+        expect(dish.length).to.equal(10);
         done();
       });
     }).timeout(10000);
 
     it("returns the correct dish type of main course and pizza", (done) => {
       model.getAllDishes("main course", "pizza")
-      .then((data) => {
-        console.log("filtered", data);
-        const onlyHasPizzas = data.every(dish => dish.title.toLowerCase().indexOf("pizza") > -1);
+      .then((dishes) => {
+        console.log("filtered", dishes);
+        const onlyHasPizzas = dishes.every(dish => dish.title.toLowerCase().indexOf("pizza") > -1);
         expect(onlyHasPizzas).to.equal(true);
         done();
       });
@@ -95,4 +95,6 @@ describe("DinnerModel", () => {
     });
     }).timeout(10000);
   });
+
+
 });
