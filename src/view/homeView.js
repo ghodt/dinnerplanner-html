@@ -3,7 +3,7 @@ class HomeView {
     this.container = container;
     this.startBtn = null;
   }
-  
+
   // An example of creating HTML declaratively. Think about the pros and cons of this approach.
   render() {
     var content = /* template */ `
@@ -17,9 +17,9 @@ class HomeView {
           arcu. Maecenas a efficitur leo.
         </p>
         <div class="spacing-medium"></div>
-        <a id="startBtn" class="btn btn-lg btn-primary-color">
+        <button type="button" id="startBtn" class="btn btn-lg btn-primary">
           Create new dinner
-        </a>
+        </button>
       </div>
     `;
     this.container.innerHTML = content;
