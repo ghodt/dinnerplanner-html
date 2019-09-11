@@ -1,5 +1,5 @@
 sidebar =
-    `<div id="sidebar">
+    `<div id="sidebar" class="col-sm-3" >
       <div>
         <h2>My Dinner</h2>
         <span>People</span>
@@ -16,6 +16,6 @@ sidebar =
     </div>
     </div>`;
 
-header = `<div class="header d-flex align-items-center justify-content-center">
+header = `<div class="header col-sm-12 d-flex align-items-center justify-content-center">
     <h1>Dinner Planner</h1>
   </div>`;

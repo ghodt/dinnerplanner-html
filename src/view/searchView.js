@@ -5,10 +5,13 @@ class SearchView {
   }
 
   render(dishId) {
-      this.container.insertAdjacentHTML('beforebegin', header + sidebar);
+      this.container.insertAdjacentHTML('beforebegin', header);
+      let row = document.createElement('div');
+      row.className = "row mh-100";
+      row.innerHTML = sidebar;
     var content = /* template */ `
 
-    <div class="container text-center full-vh d-flex align-items-center justify-content-center flex-column">
+    <div id="search-container" class="container col-sm-9 text-center full-vh d-flex align-items-center justify-content-center flex-column">
         <div id="search-bar">
           <h2>Find a dish</h2>
           <form class="" action="" method="post">
@@ -23,10 +26,19 @@ class SearchView {
             <input type="submit" value="Search">
           </form>
         </div>
-        <div id="search-results"></div>
+        <div id="dishItems">
+          <div class="dish">
+          <div>
+            <img src="images/bakedbrie.jpg">
+            </div>
+            <span class="value-main-course-name">Baked Brie</span>
+          </div>
+        </div>
     </div>
     `;
-    this.container.innerHTML = content;
+    row.innerHTML += content;
+    this.container.innerHTML = "";
+    this.container.appendChild(row);
     this.afterRender();
   }
 
