@@ -8,7 +8,6 @@ class DinnerModel {
     this.dinnerMenu = [];
     this.authHeader = {"X-Mashape-Key" : apiKey};
     this.endpoint = endpoint;
-
   }
 
   setNumberOfGuests(num) {
@@ -50,11 +49,11 @@ class DinnerModel {
   //Adds the passed dish to the menu. If the dish of that type already exists on the menu
   //it is removed from the menu and the new one added.
   async addDishToMenu(id) {
-    console.log(this.dinnerMenu);
     const newDish = await this.getDish(id);
-    if(newDish == undefined) {
+    if(newDish == undefined){
       return;
     }
+    //console.log(newDish);
     // Doesn't remove dish of the same type right now
     // const oldDish = this.getSelectedDish(newDish.dishTypes);
     // if(oldDish !== undefined){
@@ -100,13 +99,8 @@ class DinnerModel {
     let dish = await fetch(this.endpoint + id + "/information", {
       headers: this.authHeader
     })
-    .then(function(response) {
-        if (!response.ok) {
-            return response;
-        }
-        return response;
-    })
-    .then(response => response.json());
+    .then(response => response.json())
+    .catch(console.error);
     return dish;
   }
 
