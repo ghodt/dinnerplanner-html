@@ -4,8 +4,6 @@ class DinnerModel {
 
   constructor() {
     this.dishes = dishesConst;
-    // implement the data structure that will hold number of guests
-    // and selected dishes for the dinner menu
     this.numberOfGuests = 0;
     this.dinnerMenu = [];
     this.authHeader = {"X-Mashape-Key" : apiKey};
@@ -64,16 +62,16 @@ class DinnerModel {
   }
 
   //Removes dish from menu
-  async removeDishFromMenu(id) {
+  removeDishFromMenu(id) {
     if(this.dinnerMenu.length == 0){
       return;
     }
 
-    await this.getDish(id).then(dish => {
-      if(dish != undefined){
+  //  this.getDish(id).then(dish => {
+      //if(dish != undefined){
         this.dinnerMenu.splice(this.dinnerMenu.indexOf(this.dinnerMenu.find(dish => dish.id == dish)), 1);
-      }
-    });
+    //  }
+  //  });
   }
 
   //Returns all dishes of specific type (i.e. "starter", "main dish" or "dessert").
@@ -89,9 +87,9 @@ class DinnerModel {
     let dishes = await fetch(this.endpoint + "search?type=" + type + "&query=" + query, {
         headers: this.authHeader
       })
-      .then(response => response.json())
-      .then(data => {return data.results})
-      .catch(console.error);
+      .then(response => response.json().results)
+    //  .then(data => {return data.results})
+    //  .catch(console.error);
     return dishes;
   }
 
@@ -101,7 +99,7 @@ class DinnerModel {
       headers: this.authHeader
     })
     .then(response => response.json())
-    .catch(console.error);
+  //  .catch(console.error);
     return dish;
   }
 }
