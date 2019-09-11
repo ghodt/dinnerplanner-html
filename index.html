@@ -13,13 +13,11 @@
 
 </head>
 <body>
-<div class="container">
+<div class="container page-content">
     <h1>Dinner planner</h1>
     <div id="loader" class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
     </div>
-
-    <div id="mocha"></div>
 </div>
 
 <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
@@ -34,26 +32,14 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-<script src="https://unpkg.com/chai/chai.js"></script>
-<script src="https://unpkg.com/mocha/mocha.js"></script>
-
-<script class="mocha-init">
-  mocha.setup({
-    ui: 'bdd'
-  });
-  mocha.checkLeaks();
-</script>
-
 <!-- The application JavaScript code -->
 <!-- Make API key available to other files. Not really that safe but it won't show in the repo. -->
 <script src="src/config.js"></script>
 <script src="src/model/dinnerModel.js"></script>
+<script src="src/view/overviewView.js"></script>
+<script src="src/view/homeView.js"></script>
+<script src="src/view/searchView.js"></script>
 <script src="src/app.js"></script>
-<script src="src/model/dinnerModel.test.js"></script>
-
-<script class="mocha-exec">
-  mocha.run();
-</script>
 
 </body>
 </html>
