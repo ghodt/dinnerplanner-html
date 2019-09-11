@@ -63,16 +63,11 @@ class DinnerModel {
   }
 
   //Removes dish from menu
-  async removeDishFromMenu(id) {
+  removeDishFromMenu(id) {
     if(this.dinnerMenu.length == 0){
       return;
     }
-
-     const dish = await this.getDish(id);
-     if(dish != undefined){
         this.dinnerMenu.splice(this.dinnerMenu.indexOf(this.dinnerMenu.find(dish => dish.id == dish)), 1);
-      }
-  //  });
   }
 
   //Returns all dishes of specific type (i.e. "starter", "main dish" or "dessert").
