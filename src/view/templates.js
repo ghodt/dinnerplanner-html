@@ -1,5 +1,5 @@
 sidebar =
-    `<div id="sidebar" class="col-sm-3" >
+    `<div id="sidebarView" class="col-sm-3" >
       <div>
         <h2>My Dinner</h2>
         <span>People</span>

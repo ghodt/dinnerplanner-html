@@ -12,7 +12,7 @@ body {
   background-color: #E5E5E5;
   padding: 20px;
 }
-#sidebar {
+#sidebarView {
   border-width: 2px;
   border-style: solid;
   border-color: red;
