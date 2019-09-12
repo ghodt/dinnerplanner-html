@@ -16,38 +16,38 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-	display: block;
+    display: block;
 }
 body {
-	line-height: 1;
+    line-height: 1;
 }
 ol, ul {
-	list-style: none;
+    list-style: none;
 }
 blockquote, q {
-	quotes: none;
+    quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+    content: '';
+    content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
-
+/* End reset css */
 
 html {
   font-family: 'Open Sans', sans-serif;
@@ -56,24 +56,27 @@ html {
 
 body {
   height: 100%;
-}
-h1 {
-  font-size: 32px;
-}
-h2 {
-  margin: 10px;
-  font-size: 24px;
+  margin: 0px;
 }
 
+h1 {
+	font-size: 38px;
+}
+
+#find-dish {
+	font-size: 24px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
 .header {
   background-color: #E5E5E5;
   padding: 20px;
 }
-
 #sidebarView {
   border-width: 2px;
   border-style: solid;
-  border-color: red;
+  border-color: black;
+
   height: 100%;
   padding: 0px;
 /*  margin-bottom: 0%;
@@ -118,33 +121,36 @@ h2 {
   float: center;
 }
 
-#search-container {
+#dishSearchView {
   width: 100%;
-  height: 100%;
+	border-width: 2px;
+  border-style: solid;
+  border-color: black;
+	padding: 0px;
+	margin-left: 0px;
+
 }
 
 #search-bar {
-  border-width: 2px;
+	padding: 0px;
+	border-width: 2px;
   border-style: solid;
-  border-color: green;
-  height: 100%;
+  border-color: black;
 }
 
 #dishItems {
-  display: flex;
-  border-width: 2px;
-  border-style: solid;
-  border-color: yellow;
+	padding: 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: flex;
 }
 
 .dish {
-  margin: 10px;
+	margin: 10px;
 }
-
-/*.row {
+.row {
   height: 100%;
-}*/
-/*
+}
 .page-content {
   /*margin-left: 0px;
   margin-right: 0px;*/
