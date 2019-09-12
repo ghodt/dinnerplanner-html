@@ -62,11 +62,13 @@ body {
 .header {
   background-color: #E5E5E5;
   padding: 20px;
+  font-size: 3em;
+  font-weight: bold;
 }
 #sidebarView {
   border-width: 2px;
   border-style: solid;
-  border-color: red;
+  border-color: black;
   height: 100%;
   padding: 0px;
 /*  margin-bottom: 0%;
@@ -113,6 +115,60 @@ body {
 
 #search-container {
   width: 100%;
+}
+
+#search-bar {
+  height: 50px;
+}
+
+.details-row {
+  width: 100%;
+}
+
+#details-dish {
+  padding: 10px;
+}
+#details-image {
+  height: auto;
+  display: block;
+  margin: 0.5em;
+}
+
+#details-dish-name {
+  font-size: 3em;
+  margin-bottom: 0.5em;
+  width: 100%;
+  float: left;
+}
+#details-description {
+  width: 100%;
+  padding: 0.5em;
+  margin: 0.5em;
+}
+
+#details-ingredients {
+  background-color: orange;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  padding: 0.7em;
+}
+
+#details-ingredients > h3 {
+  font-size: 2em;
+}
+
+#details-ingredients > li {
+  font-size: 2em;
+}
+
+#go-back-to-searchBtn {
+  margin: 0.5em;
+}
+
+#details-preparation-row {
+  width: 100%;
+  height: auto;
 }
 .row {
   height: 100%;

@@ -11,8 +11,8 @@ class SearchView {
       row.innerHTML = sidebar;
     var content = /* template */ `
 
-    <div id="search-container" class="container col-sm-9 text-center full-vh d-flex align-items-center flex-column">
-        <div id="search-bar">
+    <div id="search-container" class="container col-sm-9 text-center full-vh d-flex align-items-center flex-column row">
+        <div id="search-bar" class="col">
           <h2>Find a dish</h2>
           <form class="" action="" method="post">
             <input type="text" name="search-string" value="Enter key words">
@@ -26,7 +26,8 @@ class SearchView {
             <input type="submit" value="Search">
           </form>
         </div>
-        <div id="dishItems">
+        <div class="w-100"></div>
+        <div id="dishItems" class="col">
           <div class="dish">
           <div>
             <img src="images/bakedbrie.jpg">
