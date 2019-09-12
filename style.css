@@ -157,3 +157,34 @@ h1 {
   height: 100%;
   width: 100%;
 }
+
+/* Overview */
+#my-dinner-go-back {
+  padding-top: 10px;
+	padding-bottom: 10px;
+
+	display: flex;
+}
+
+#my-dinner-overview {
+	padding: 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: flex;
+}
+#go-back-btn {
+	margin-left: 20px;
+}
+
+#toPrintBtn {
+
+}
+.value-num-guests {
+
+}
+.value-main-course-name {
+
+}
+.value-total-price {
+
+}
