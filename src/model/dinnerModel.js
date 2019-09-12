@@ -53,12 +53,6 @@ class DinnerModel {
     if(newDish == undefined){
       return;
     }
-    //console.log(newDish);
-    // Doesn't remove dish of the same type right now
-    // const oldDish = this.getSelectedDish(newDish.dishTypes);
-    // if(oldDish !== undefined){
-    //   this.removeDishFromMenu(oldDish.id);
-    // }
     this.dinnerMenu.push(newDish);
   }
 
