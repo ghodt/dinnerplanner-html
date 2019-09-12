@@ -12,9 +12,7 @@ class HomeView {
     </div>
     <div class="container text-center full-vh d-flex align-items-center justify-content-center flex-column">
         <p class="text-center p-max-width">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel laoreet orci. Nullam ut iaculis diam. Aliquam
-          magna nulla, congue ut elementum hendrerit, dignissim at mauris. Quisque ac felis sed nibh elementum euismod a sit amet
-          arcu. Maecenas a efficitur leo.
+          Hi and welcome to this sicc website where you can create dinner menus. Let's begin!
         </p>
         <div class="spacing-medium"></div>
         <button type="button" id="startBtn" class="btn btn-lg btn-primary">
