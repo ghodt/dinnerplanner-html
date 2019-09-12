@@ -7,11 +7,11 @@ class SearchView {
   render(dishId) {
       this.container.insertAdjacentHTML('beforebegin', header);
       let row = document.createElement('div');
-      row.className = "row mh-100";
+      row.className = "row";
       row.innerHTML = sidebar;
     var content = /* template */ `
 
-    <div id="search-container" class="container col-sm-9 text-center full-vh d-flex align-items-center justify-content-center flex-column">
+    <div id="search-container" class="container col-sm-9 text-center full-vh d-flex align-items-center flex-column">
         <div id="search-bar">
           <h2>Find a dish</h2>
           <form class="" action="" method="post">
