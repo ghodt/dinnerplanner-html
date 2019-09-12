@@ -16,35 +16,35 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-	display: block;
+    display: block;
 }
 body {
-	line-height: 1;
+    line-height: 1;
 }
 ol, ul {
-	list-style: none;
+    list-style: none;
 }
 blockquote, q {
-	quotes: none;
+    quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+    content: '';
+    content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 /* End reset css */
@@ -59,6 +59,15 @@ body {
   margin: 0px;
 }
 
+h1 {
+	font-size: 38px;
+}
+
+#find-dish {
+	font-size: 24px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
 .header {
   background-color: #E5E5E5;
   padding: 20px;
@@ -69,6 +78,7 @@ body {
   border-width: 2px;
   border-style: solid;
   border-color: black;
+
   height: 100%;
   padding: 0px;
 /*  margin-bottom: 0%;
@@ -113,8 +123,32 @@ body {
   float: center;
 }
 
-#search-container {
+#dishSearchView {
   width: 100%;
+	border-width: 2px;
+  border-style: solid;
+  border-color: black;
+	padding: 0px;
+	margin-left: 0px;
+
+}
+
+#search-bar {
+	padding: 0px;
+	border-width: 2px;
+  border-style: solid;
+  border-color: black;
+}
+
+#dishItems {
+	padding: 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: flex;
+}
+
+.dish {
+	margin: 10px;
 }
 
 #search-bar {
@@ -178,4 +212,35 @@ body {
   margin-right: 0px;*/
   height: 100%;
   width: 100%;
+}
+
+/* Overview */
+#my-dinner-go-back {
+  padding-top: 10px;
+	padding-bottom: 10px;
+
+	display: flex;
+}
+
+#my-dinner-overview {
+	padding: 0px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: flex;
+}
+#go-back-btn {
+	margin-left: 20px;
+}
+
+#toPrintBtn {
+
+}
+.value-num-guests {
+
+}
+.value-main-course-name {
+
+}
+.value-total-price {
+
 }
