@@ -50,6 +50,7 @@ table {
 
 
 html {
+  font-family: 'Open Sans', sans-serif;
   height: 100%;
 }
 
@@ -74,8 +75,47 @@ h2 {
   border-style: solid;
   border-color: red;
   height: 100%;
+  padding: 0px;
 /*  margin-bottom: 0%;
   padding-bottom: 100%;*/
+}
+
+#sidebar-header {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.5em;
+}
+
+#sidebar-guests {
+  margin: 0.5em;
+}
+
+#number-input {
+  width: 50px;
+}
+
+#sidebar-mid-section {
+  background-color: #E5E5E5;
+  height: 30px;
+  padding: 0px;
+  margin: 0px;
+}
+#sidebar-dish-name {
+  width: 50%;
+  padding-left: 0.5em;
+}
+
+#sidebar-cost {
+  width: 50%;
+  padding-right: 0.5em;
+}
+
+#sidebar-total-price {
+  padding: 0.5em;
+}
+
+#sidebar-button {
+  float: center;
 }
 
 #search-container {
@@ -110,4 +150,4 @@ h2 {
   margin-right: 0px;*/
   height: 100%;
   width: 100%;
-}*/
+}
