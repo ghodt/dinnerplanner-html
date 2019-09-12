@@ -16,13 +16,12 @@ class DetailsView {
     <div class="container col-sm-9 text-center full-vh d-flex align-items-center justify-content-center flex-column row">
       <div class="row details-row">
         <div id="details-dish" class="col-6">
-          <div id="details-dish-name" class="text-left">
+          <div id="details-dish-name" class="text-left details-header">
             <h2>Toast</h2>
           </div>
           <div class="">
             <img src="images/toast.jpg" id="details-image"> </img>
           </div>
-          </br>
           <p id="details-description" class="text-justify">Toast toast toast toast, toast toast toast. Toast toast toast toast, toast toast toast.
           Toast toast toast toast, toast toast toast. Toast toast toast toast, toast toast toast. Toast toast toast toast, toast toast toast.</p>
           <div class="text-left">
@@ -37,16 +36,18 @@ class DetailsView {
             <li>Amount Olive oil SEK Price</li>
             <li>Bread</li>
           </ul>
-          <div class="text-left">
-            <button type="button" name="button" class="btn btn-lg btn-primary">Add to menu</button>
-          </div>
-          <div class="details-total-price text-right">
-            SEK 4783.76
+          <div class="">
+            <span class="text-left">
+              <button type="button" name="button" id="details-add-button" class="btn btn-lg btn-primary">Add to menu</button>
+            </span>
+            <span class="text-right" id="details-total-price">
+              SEK 4783.76
+            </span>
           </div>
         </div>
         <div class="row" id="details-preparation-row">
-          <div id="details-preparation" class="col-6">
-            <h3> Preparation</h3>
+          <div id="details-preparation" class="col-6 text-left text-justify">
+            <h3 class="details-header"> Preparation</h3>
             <p> Blabmakegmkrsmglsöl <p>
           </div>
         </div>

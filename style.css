@@ -74,11 +74,10 @@ h1 {
   font-size: 3em;
   font-weight: bold;
 }
-#sidebarView {
+#sideBarView {
   border-width: 2px;
   border-style: solid;
   border-color: black;
-
   height: 100%;
   padding: 0px;
 /*  margin-bottom: 0%;
@@ -174,6 +173,13 @@ h1 {
   width: 100%;
   float: left;
 }
+
+.details-header {
+  font-size: 3em;
+  margin-bottom: 0.5em;
+  width: 100%;
+  float: left;
+}
 #details-description {
   width: 100%;
   padding: 0.5em;
@@ -192,8 +198,21 @@ h1 {
   font-size: 2em;
 }
 
-#details-ingredients > li {
-  font-size: 2em;
+#details-ingredients > ul {
+  margin: 1em;
+}
+
+#details-ingredients li {
+  margin: 1em;
+}
+
+#details-total-price {
+  display: inline;
+  float: right;
+}
+
+#details-add-button {
+  float: left;
 }
 
 #go-back-to-searchBtn {
@@ -203,6 +222,7 @@ h1 {
 #details-preparation-row {
   width: 100%;
   height: auto;
+  padding: 0.5em;
 }
 .row {
   height: 100%;
