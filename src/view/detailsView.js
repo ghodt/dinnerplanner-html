@@ -43,7 +43,7 @@ class DetailsView {
               <button type="button" name="button" id="details-add-button" class="btn btn-lg btn-primary">Add to menu</button>
             </span>
             <span class="text-right" id="details-total-price">
-              SEK ` + dish.pricePerServing + 
+              SEK ` + dish.pricePerServing +
             `</span>
           </div>
         </div>

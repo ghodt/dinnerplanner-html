@@ -10,7 +10,20 @@ window.onload = function () {
   const detailsView = new DetailsView(container, model);
   const printoutView = new PrintoutView(container, model);
 
-  searchView.render()
+  if(document.getElementById("homeView") != null) {
+    homeView.render();
+  }
+  else if (document.getElementById("detailsView") != null) {
+    detailsView.render();
+  }
+  else if (document.getElementById("overviewView") != null) {
+    overviewView.render();
+  }
+  else if (document.getElementById("printoutView") != null) {
+    printoutView.render();
+  }
+  
+
 
 
 
