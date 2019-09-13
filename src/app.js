@@ -22,10 +22,9 @@ window.onload = function () {
   else if (document.getElementById("printoutView") != null) {
     printoutView.render();
   }
-  
-
-
-
+  else if (document.getElementById("searchView") != null) {
+    searchView.render();
+  }
 
   /**
    * IMPORTANT: app.js is the only place where you are allowed to
