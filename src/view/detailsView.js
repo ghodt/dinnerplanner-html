@@ -34,7 +34,7 @@ class DetailsView {
           <h3> Ingredients for `+ num_of_guests + ` people </h3>`;
           let ingredients_list = "<ul>";
           for(let i = 0; i < dish.extendedIngredients.length; i++) {
-            ingredients_list += "<li>" + dish.extendedIngredients[i].name + "</li>";
+            ingredients_list += "<li>" + dish.extendedIngredients[i].original + "</li>";
           }
           ingredients_list += "</ul>";
           content += ingredients_list +
@@ -43,8 +43,8 @@ class DetailsView {
               <button type="button" name="button" id="details-add-button" class="btn btn-lg btn-primary">Add to menu</button>
             </span>
             <span class="text-right" id="details-total-price">
-              SEK 4783.76
-            </span>
+              SEK ` + dish.pricePerServing + 
+            `</span>
           </div>
         </div>
         <div class="row" id="details-preparation-row">
