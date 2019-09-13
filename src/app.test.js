@@ -23,8 +23,8 @@ describe("DinnerPlanner App", () => {
   });
 
   describe("Search view", () => {
-    beforeEach(() => {
-      model.addDishToMenu(559251);
+    beforeEach(async () => {
+      await model.addDishToMenu(559251);
       searchView.render();
     });
 
@@ -55,7 +55,7 @@ describe("DinnerPlanner App", () => {
       expect(valueHolders.length).to.be.above(0);
       for (let v of valueHolders) {
         expect(v).to.not.be.a("null");
-        expect(v.innerHTML).to.equal(""+model.getNumberOfGuests());
+        expect(v.value).to.equal(""+model.getNumberOfGuests());
       }
     });
 
@@ -79,8 +79,8 @@ describe("DinnerPlanner App", () => {
   });
 
   describe("Confirmation page", () => {
-    beforeEach(() => {
-      model.addDishToMenu(559251);
+    beforeEach(async () => {
+      await model.addDishToMenu(559251);
       overviewView.render();
     });
 

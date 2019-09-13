@@ -10,7 +10,7 @@ window.onload = function () {
   const detailsView = new DetailsView(container, model);
   const printoutView = new PrintoutView(container, model);
 
-  detailsView.render()
+  searchView.render()
 
 
 

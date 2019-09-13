@@ -9,7 +9,7 @@ class SearchView {
       let row = document.createElement('div');
       row.className = "row";
       row.innerHTML = sidebar;
-      const searchString = "Baked Brie";
+      const searchString = "Breakfast Pizza";
       let dishes = await this.model.getAllDishes("", searchString);
       console.log(dishes);
 
@@ -19,7 +19,7 @@ class SearchView {
         <div id="search-bar" class="col">
           <h2 id="find-dish">Find a dish</h2>
           <form class="" action="" method="post">
-            <input type="text" name="search-string" value="Baked brie">
+            <input type="text" name="search-string" value="` + searchString + `">
             <select name="dish-type">
               <option value="all">All</option>
               <option value="main-course">Main course</option>
@@ -38,7 +38,7 @@ class SearchView {
           <div>
             <img src="https://spoonacular.com/recipeImages/` + dishes[i].image + `">
             </div>
-            <span class="value-main-course-name">` + dishes[i].title + `</span>
+            <span class="value-main-course-name">` + searchString + `</span>
             </div>`;
         }
         dish_div +=
@@ -52,5 +52,6 @@ class SearchView {
   }
 
   afterRender() {
+
   }
 }
