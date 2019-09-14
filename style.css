@@ -252,6 +252,7 @@ p {
 	padding-right: 0px;
 }
 
+
 /* Overview */
 #my-dinner-go-back {
   padding-top: 10px;
@@ -282,6 +283,9 @@ p {
 }
 .value-total-price {
 
+}
+.container {
+  padding: 0px;
 }
 
 img {

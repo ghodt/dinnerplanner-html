@@ -8,7 +8,7 @@ class SearchView {
     //this.container.insertAdjacentHTML('beforebegin', header);
     console.log("bish");
     this.container.insertAdjacentHTML('afterbegin', header);
-    this.container.querySelector('#content').insertAdjacentHTML('afterbegin', sidebar);
+    this.container.querySelector('#sideBarView').innerHTML = sidebar;
 
     // let row = document.createElement('div');
     // row.className = "row";
