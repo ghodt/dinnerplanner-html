@@ -192,8 +192,8 @@ p {
 }
 
 #details-ingredients {
-  background-color: orange;
   border-width: 2px;
+  background-color: orange;
   border-style: solid;
   border-color: black;
   padding: 0.7em;
@@ -231,10 +231,12 @@ p {
 }
 .row {
   height: 100%;
+  margin: auto;
 }
 .page-content {
   /*margin-left: 0px;
   margin-right: 0px;*/
+  padding: 0px;
   height: 100%;
   width: 100%;
 }

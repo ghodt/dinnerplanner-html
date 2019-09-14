@@ -1,5 +1,18 @@
+/*  i ....html
+<div class="row">
+  <div id="sideBarView" class="container col-sm-3"> </div>
+
+  blabalmlekf all annan kod
+
+  </div>
+
+
+  // set sidebar in ...View.js
+  this.container.querySelector('#sideBarView').innerHTML = sidebar;
+  */
+
 sidebar =
-  `<div id="sideBarView" class="col-sm-3" >
+  `
       <div>
         <h2 id="sidebar-header">My Dinner</h2>
         <div id="sidebar-guests">
@@ -18,8 +31,7 @@ sidebar =
       <div class="text-center">
         <button type="button" class="btn btn-primary" id="sidebar-button" name="confirm-button">Confirm Dinner</button>
       </div>
-    </div>
-  </div>`;
+    </div>`;
 
 header = `<div class="header col-sm-12 d-flex align-items-center justify-content-center">
     <h1>Dinner Planner</h1>

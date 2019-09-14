@@ -5,59 +5,39 @@ class DetailsView {
   }
 
   async render(dishId) {
-    this.container.innerHTML = "";
-    this.container.insertAdjacentHTML('beforebegin', header);
-    let row = document.createElement('div');
-    row.className = "row";
-    row.innerHTML = sidebar;
-    const dish = await this.model.getDish(559251);
+    // set header
+    this.container.querySelector('#header').innerHTML = header;
+
+    // set sidebar
+    this.container.querySelector('#sideBarView').innerHTML = sidebar;
+
+    // get dish and number of guests
+    const dish = await this.model.getDish(dishId);
     const num_of_guests = 2; //this.model.getNumberOfGuests();
 
-    let content = `
-    <div id="details-container" class="container col-sm-9 text-center full-vh d-flex align-items-center justify-content-center flex-column row">
-      <div class="row details-row">
-        <div id="details-dish" class="col-6">
-          <div id="details-dish-name" class="text-left details-header">
-            <h1>` + dish.title + `</h1>
-          </div>
-          <div class="">
-            <img src="` + dish.image + `" id="details-image"> </img>
-          </div>
-          <p id="details-description" class="text-justify">`+ "Here is some facts about this dish."+ `</p>
-          <div class="text-left">
-            <button type="button" id="go-back-to-searchBtn" class="btn btn-lg btn-primary align-self-end">
-              Go back to search
-            </button>
-          </div>
-        </div>
-        <div id="details-ingredients" class="col-6">
-          <h3> Ingredients for `+ num_of_guests + ` people </h3>`;
-          let ingredients_list = "<ul>";
-          for(let i = 0; i < dish.extendedIngredients.length; i++) {
-            ingredients_list += "<li>" + dish.extendedIngredients[i].original + "</li>";
-          }
-          ingredients_list += "</ul>";
-          content += ingredients_list +
-          `<div class="">
-            <span class="text-left">
-              <button type="button" name="button" id="details-add-button" class="btn btn-lg btn-primary">Add to menu</button>
-            </span>
-            <span class="text-right" id="details-total-price">
-              SEK ` + dish.pricePerServing +
-            `</span>
-          </div>
-        </div>
-        <div class="row" id="details-preparation-row">
-          <div id="details-preparation" class="col-12 text-left text-justify">
-            <h3 class="details-header"> Preparation</h3>
-            <p> ` + dish.instructions + `<p>
-          </div>
-        </div>
-      </div>
-    </div>`;
-    row.innerHTML += content;
-    this.container.innerHTML = "";
-    this.container.appendChild(row);
+    // set dish title
+    const dishTitles = this.container.getElementsByClassName("value-main-course-name");
+    for(let i = 0; i < dishTitles.length; i++) {
+      dishTitles[i].innerHTML = dish.title;
+    }
+
+    // set ingredients list
+    let ingredients_list = document.createElement('ul');
+    for(let i = 0; i < dish.extendedIngredients.length; i++) {
+      let ing = document.createElement('li');
+      ing.innerHTML = dish.extendedIngredients[i].original;
+      ingredients_list.appendChild(ing);
+    }
+
+    // set number of guests
+    const guests = this.container.getElementsByClassName("value-num-guests");
+    for(let i = 0; i < guests.length; i++) {
+      guests[i].innerHTML = num_of_guests;
+    }
+
+    // set instructions
+    const instructions = this.container.querySelector("#instructions");
+    instructions.innerHTML = dish.instructions;
   }
 
   afterRender() {

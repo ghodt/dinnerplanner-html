@@ -3,7 +3,7 @@ window.onload = function () {
   //We instantiate our model
   const model = new DinnerModel();
 
-  const container = document.getElementsByClassName("page-content")[0]
+  const container = document.getElementsByClassName("page-content")[0];
   const homeView = new HomeView(container);
   const overviewView = new OverviewView(container, model);
   const searchView = new SearchView(container, model);
@@ -13,8 +13,8 @@ window.onload = function () {
   if(document.getElementById("homeView") != null) {
     homeView.render();
   }
-  else if (document.getElementById("detailsView") != null) {
-    detailsView.render();
+   if (document.getElementById("detailsView") != null) {
+    detailsView.render(559251);
   }
   else if (document.getElementById("overviewView") != null) {
     overviewView.render();
@@ -22,8 +22,9 @@ window.onload = function () {
   else if (document.getElementById("printoutView") != null) {
     printoutView.render();
   }
-  
-
+  else if (document.getElementById("searchView") != null) {
+    searchView.render();
+  }
 
 
 
