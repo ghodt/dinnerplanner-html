@@ -67,6 +67,11 @@ p {
 	margin: 10px;
 }
 
+.page-content {
+  margin: 0px;
+  padding: 0px;
+}
+
 #find-dish {
 	font-size: 24px;
 	padding-top: 10px;
