@@ -5,21 +5,24 @@ class DetailsView {
   }
 
   async render(dishId) {
-    // set header
-    this.container.querySelector('#header').innerHTML = header;
+    // pretend to get number of guests later
+    this.model.setNumberOfGuests(2);
 
-    // set sidebar
+    // set header and sidebar
+    this.container.querySelector('#header').innerHTML = header;
     this.container.querySelector('#sideBarView').innerHTML = sidebar;
 
     // get dish and number of guests
     const dish = await this.model.getDish(dishId);
-    const num_of_guests = 2; //this.model.getNumberOfGuests();
+    const num_of_guests = this.model.getNumberOfGuests(); //this.model.getNumberOfGuests();
 
     // set dish title
     const dishTitles = this.container.getElementsByClassName("value-main-course-name");
     for(let i = 0; i < dishTitles.length; i++) {
       dishTitles[i].innerHTML = dish.title;
     }
+    // set dish image
+    this.container.querySelector('#details-image').src = dish.image;
 
     // set ingredients list
     let ingredients_list = document.createElement('ul');
@@ -28,6 +31,7 @@ class DetailsView {
       ing.innerHTML = dish.extendedIngredients[i].original;
       ingredients_list.appendChild(ing);
     }
+    this.container.querySelector('#ingredients-list').appendChild(ingredients_list);
 
     // set number of guests
     const guests = this.container.getElementsByClassName("value-num-guests");
