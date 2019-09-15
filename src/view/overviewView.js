@@ -6,23 +6,24 @@ class OverviewView {
 
     // An example of creating HTML procedurally. Think about the pros and cons of this approach.
     render() {
-      this.container.innerHTML = "";
-      this.container.insertAdjacentHTML('beforebegin', header);
-      const div1 = this.container.appendChild(document.createElement('div'));
-      div1.id = "my-dinner-go-back";
+      this.container.insertAdjacentHTML('afterbegin', header);
+      this.container.querySelector('#sideBarView').innerHTML = sidebar;
+      //this.container.insertAdjacentHTML('beforebegin', header);
+      //const div1 = this.container.appendChild(document.createElement('div'));
+      //div1.id = "my-dinner-go-back";
       const paragraph = this.container.appendChild(document.createElement('P'))
     //  paragraph.className = "value-num-guests";
-      const num_of_guests = 3; // GET REAL DATA
-      paragraph.innerHTML = "My Dinner: " + num_of_guests + " people";
-      let goBackBtn = this.container.appendChild(document.createElement('button'));
-      goBackBtn.id = "go-back-btn";
-      goBackBtn.className = "btn btn-primary text-right"
-      goBackBtn.innerHTML = "Go back and edit dinner!";
-      div1.appendChild(paragraph);
-      div1.appendChild(goBackBtn);
+      // const num_of_guests = 3; // GET REAL DATA
+      // paragraph.innerHTML = "My Dinner: " + num_of_guests + " people";
+      // let goBackBtn = this.container.appendChild(document.createElement('button'));
+      // goBackBtn.id = "go-back-btn";
+      // goBackBtn.className = "btn btn-primary text-right"
+      // goBackBtn.innerHTML = "Go back and edit dinner!";
+      // div1.appendChild(paragraph);
+      // div1.appendChild(goBackBtn);
 
-      const div2 = this.container.appendChild(document.createElement('div'))
-      div2.id = "my-dinner-overview";
+      // const div2 = this.container.appendChild(document.createElement('div'))
+      // div2.id = "my-dinner-overview";
 
       for(const food of ["toast", "icecream"]) {
         const dish = document.createElement('div');
