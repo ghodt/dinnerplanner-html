@@ -6,9 +6,6 @@ class DetailsView {
 
   async render(dishId) {
     const dish = await this.model.getDish(dishId);
-    let cost = 0;
-    // pretend to get number of guests later
-    this.model.setNumberOfGuests(2);
     const num_of_guests = this.model.getNumberOfGuests();
     // set header and sidebar
     this.container.insertAdjacentHTML('afterbegin', header);
@@ -69,7 +66,7 @@ class DetailsView {
             <span class="text-left" id="ingredients-list">`+ ingredients_list.innerHTML + `</span>
             <div class="">
               <span class="text-right" id="details-total-price">
-                SEK `+ cost + `
+                SEK `+ dish.pricePerServing * num_of_guests + `
               </span>
               <span class="text-left">
                 <button type="button" name="button" id="details-add-button" class="btn btn-lg btn-primary">Add to menu</button>
@@ -77,7 +74,7 @@ class DetailsView {
             </div>
           `;
     detailsRow.appendChild(detailsIngredients);
-
+console.log(dish);
     // PREPARATION
     let detailsPrep = document.createElement('div');
     detailsPrep.id = "details-preparation-row";
