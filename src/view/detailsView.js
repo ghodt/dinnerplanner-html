@@ -6,22 +6,23 @@ class DetailsView {
 
   async render(dishId) {
     const dish = await this.model.getDish(dishId);
-    const num_of_guests = this.model.getNumberOfGuests();
+    let cost = 0;
     // pretend to get number of guests later
     this.model.setNumberOfGuests(2);
+    const num_of_guests = this.model.getNumberOfGuests();
     // set header and sidebar
     this.container.insertAdjacentHTML('afterbegin', header);
 
     let totalRow = document.createElement('div');
-  //  detailsRow.id = "content";
     totalRow.className = "row";
+    this.container.appendChild(totalRow);
 
     let sideBar = document.createElement('div');
     sideBar.id = "sideBarView";
     sideBar.className = "container col-sm-3";
     sideBar.innerHTML = sidebar;
     totalRow.appendChild(sideBar);
-    this.container.appendChild(totalRow);
+
 
     let detailsView = document.createElement('div');
     detailsView.id = "details-container";
@@ -56,19 +57,19 @@ class DetailsView {
     let detailsIngredients = document.createElement('div');
     detailsIngredients.id = "details-ingredients";
     detailsIngredients.className = "col-6";
-
+console.log(dish);
     let ingredients_list = document.createElement('ul');
     for(let i = 0; i < dish.extendedIngredients.length; i++) {
       let ing = document.createElement('li');
-      ing.innerHTML = dish.extendedIngredients[i].original;
+      ing.innerHTML = dish.extendedIngredients[i].amount * num_of_guests + " " + dish.extendedIngredients[i].unit + " " + dish.extendedIngredients[i].originalName;
       ingredients_list.appendChild(ing);
     }
     detailsIngredients.innerHTML = `
-            <h3> Ingredients for <span class="value-num-guests">`+ this.model.getNumberOfGuests() + `</span> people </h3>
+            <h3> Ingredients for <span class="value-num-guests">`+ num_of_guests + `</span> people </h3>
             <span id="ingredients-list">`+ ingredients_list.innerHTML + `</span>
             <div class="">
               <span class="text-right" id="details-total-price">
-                SEK 0
+                SEK `+ cost + `
               </span>
               <span class="text-left">
                 <button type="button" name="button" id="details-add-button" class="btn btn-lg btn-primary">Add to menu</button>
