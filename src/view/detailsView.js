@@ -57,7 +57,7 @@ class DetailsView {
     let detailsIngredients = document.createElement('div');
     detailsIngredients.id = "details-ingredients";
     detailsIngredients.className = "col-6";
-console.log(dish);
+
     let ingredients_list = document.createElement('ul');
     for(let i = 0; i < dish.extendedIngredients.length; i++) {
       let ing = document.createElement('li');
@@ -66,7 +66,7 @@ console.log(dish);
     }
     detailsIngredients.innerHTML = `
             <h3> Ingredients for <span class="value-num-guests">`+ num_of_guests + `</span> people </h3>
-            <span id="ingredients-list">`+ ingredients_list.innerHTML + `</span>
+            <span class="text-left" id="ingredients-list">`+ ingredients_list.innerHTML + `</span>
             <div class="">
               <span class="text-right" id="details-total-price">
                 SEK `+ cost + `
