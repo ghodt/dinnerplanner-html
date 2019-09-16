@@ -54,6 +54,7 @@ describe("DinnerPlanner App", () => {
     it("Has a number of guests value", () => {
       const valueHolders = document.getElementsByClassName("value-num-guests");
       expect(valueHolders.length).to.be.above(0);
+      console.log(valueHolders.length);
       for (let v of valueHolders) {
         expect(v).to.not.be.a("null");
         expect(v.value).to.equal(""+model.getNumberOfGuests());
@@ -65,7 +66,7 @@ describe("DinnerPlanner App", () => {
       expect(valueHolders.length).to.be.above(0);
       for (let v of valueHolders) {
         expect(v).to.not.be.a("null");
-        expect(v.innerHTML).to.equal("Breakfast Pizza");
+        expect(v.innerHTML).to.include("Breakfast Pizza");
       }
     });
 
@@ -111,7 +112,7 @@ describe("DinnerPlanner App", () => {
       expect(valueHolders.length).to.be.above(0);
       for (let v of valueHolders) {
         expect(v).to.not.be.a("null");
-        expect(v.innerHTML).to.equal("Breakfast Pizza");
+        expect(v.innerHTML).to.include("Breakfast Pizza");
       }
     });
 

@@ -1,3 +1,5 @@
+
+
 class SearchView {
   constructor(container, model) {
     this.container = container;
@@ -5,8 +7,16 @@ class SearchView {
   }
 
   async render() {
+    console.log(this.model.getTotalMenuPrice());
     const templates = new Templates(this.model);
     this.container.insertAdjacentHTML('afterbegin', templates.header);
+
+    const loader = document.createElement('div');
+    loader.id = "loader";
+    loader.className = "spinner-border";
+    loader.role = "status";
+    loader.innerHTML = '<span class="sr-only">Loading...</span>';
+    this.container.appendChild(loader);
 
     let content = document.createElement('div');
     content.id = "content";
@@ -16,6 +26,7 @@ class SearchView {
     sideBar.id = "sideBarView";
     sideBar.className = "container col-sm-3";
     sideBar.innerHTML = templates.sidebar;
+    sideBar.querySelector('#sidebar-total-price').innerHTML = 'SEK <span class="value-total-price">' + this.model.getTotalMenuPrice();
     content.appendChild(sideBar);
     this.container.appendChild(content);
 
@@ -61,6 +72,7 @@ class SearchView {
        let title = document.createElement('span');
        title.className = "value-main-course-name";
        title.innerHTML = dishes[i].title;
+       console.log(dishes[i]);
        dish.appendChild(title)
 
        dishItems.appendChild(dish);
@@ -72,6 +84,6 @@ class SearchView {
   }
 
   afterRender() {
-
+  //  this.container.removeChild(loader);
   }
 }

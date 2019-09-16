@@ -20,7 +20,7 @@ class Templates {
       <div class="sidebar-selected dishes">
       </div>
       <div>
-        <div id="sidebar-total-price" class="text-right col-12"> SEK `+ this.model.getTotalMenuPrice() + `</div>
+        <div id="sidebar-total-price" class="text-right col-12"></div>
         <div class="text-center">
           <button type="button" class="btn btn-primary" id="sidebar-button" name="confirm-button">Confirm Dinner</button>
         </div>

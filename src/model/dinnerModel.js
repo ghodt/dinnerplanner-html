@@ -41,8 +41,14 @@ class DinnerModel {
   getTotalMenuPrice() {
     let cost = 0;
     this.dinnerMenu.forEach(dish => {
-      cost += dish.pricePerServing
+      cost += dish.pricePerServing;
+      console.log("per serving: " + dish.pricePerServing);
     });
+
+    console.log("cost: " + cost);
+    console.log("num guests: " + this.numberOfGuests);
+    console.log("len: " + this.dinnerMenu.length);
+
     return cost * this.numberOfGuests;
   }
 
@@ -53,7 +59,9 @@ class DinnerModel {
     if(newDish == undefined){
       return;
     }
+    const len = this.dinnerMenu.length;
     this.dinnerMenu.push(newDish);
+    this.assert((len + 1) == this.dinnerMenu.length);
   }
 
   //Removes dish from menu
@@ -91,6 +99,12 @@ class DinnerModel {
     .then(response => response.json())
     .catch(console.error);
     return dish;
+  }
+
+  assert(condition, message) {
+      if (!condition) {
+          throw message || "Assertion failed";
+      }
   }
 
   handleErrors(response) {
