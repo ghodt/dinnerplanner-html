@@ -72,17 +72,29 @@ p {
   padding: 0px;
 }
 
-#find-dish {
-	font-size: 24px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
 .header {
   background-color: #E5E5E5;
   padding: 20px;
   font-size: 3em;
   font-weight: bold;
 }
+
+.btn {
+  background-color: #F6B26B;
+  border-color: #CC8C49;
+}
+
+.btn:hover {
+  background-color: #CC8C49;
+  border-color: #99632B;
+}
+
+#find-dish {
+	font-size: 24px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
 #sideBarView {
   border-width: 2px;
   border-style: solid;
