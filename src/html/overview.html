@@ -14,43 +14,34 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-<div id="overviewView" class="container page-content col-sm-12">
-  <div id="content" class="container row col-sm-12">
-  <div id="sideBarView" class="container col-sm-3"> </div>
-  <div id="my-dinner-go-back" class="container col-sm-9 text-center flex-column row">
-    <p id="overview-header">My Dinner: X people</p>
-    <div class="text-center">
-      <button type="button" class="btn btn-primary text-right" id="sgo-back-btn" name="go-back-button">Go back and edit dinner</button>
+  <div id="overviewView" class="container page-content col-sm-12">
+    <div id="content" class="container row col-sm-12">
     </div>
   </div>
-  <div id="my-dinner-overview">
 
-  </div>
-</div>
+  <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+  <!-- It also includes jQuery, only for use by Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+          integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+          crossorigin="anonymous"></script>
 
-<!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
-<!-- It also includes jQuery, only for use by Bootstrap -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+  <!-- The application JavaScript code -->
+  <!-- Make API key available to other files. Not really that safe but it won't show in the repo. -->
+  <script src="../config.js"></script>
+  <script src="../model/dinnerModel.js"></script>
+  <script src="../view/templates.js"></script>
+  <script src="../view/homeView.js"></script>
+  <script src="../view/overviewView.js"></script>
+  <script src="../view/printoutView.js"></script>
+  <script src="../view/detailsView.js"></script>
+  <script src="../view/searchView.js"></script>
+  <script src="../app.js"></script>
 
-<!-- The application JavaScript code -->
-<!-- Make API key available to other files. Not really that safe but it won't show in the repo. -->
-<script src="../config.js"></script>
-<script src="../model/dinnerModel.js"></script>
-<script src="../view/templates.js"></script>
-<script src="../view/homeView.js"></script>
-<script src="../view/overviewView.js"></script>
-<script src="../view/printoutView.js"></script>
-<script src="../view/detailsView.js"></script>
-<script src="../view/searchView.js"></script>
-<script src="../app.js"></script>
-
-</body>
+  </body>
 </html>
