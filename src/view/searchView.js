@@ -84,6 +84,6 @@ class SearchView {
   }
 
   afterRender() {
-  //  this.container.removeChild(loader);
+    this.container.removeChild(loader);
   }
 }

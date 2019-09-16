@@ -1,9 +1,9 @@
-window.onload = function () {
+window.onload = async function () {
   console.log("start");
   //We instantiate our model
   const model = new DinnerModel();
   model.setNumberOfGuests(3);
-  model.addDishToMenu(559251);
+  await model.addDishToMenu(559251);
   console.log(model.getTotalMenuPrice());
   console.log(model.getFullMenu());
   const container = document.getElementsByClassName("page-content")[0];
