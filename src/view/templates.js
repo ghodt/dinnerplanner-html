@@ -17,7 +17,7 @@ sidebar =
         <h2 id="sidebar-header">My Dinner</h2>
         <div id="sidebar-guests">
           <span>People</span>
-          <input type="number" id="number-input" min="1" max="100" name="number-of-guests" class="value-num-guests" value="1">
+          <input type="number" id="number-input" min="1" max="100" name="number-of-guests" class="value-num-guests" value="0">
       </div>
       </div>
     <div id="sidebar-mid-section" class="col-12 row align-items-center">

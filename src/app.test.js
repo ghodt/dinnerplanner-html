@@ -9,6 +9,7 @@ describe("DinnerPlanner App", () => {
 
   beforeEach(() => {
     model = new DinnerModel();
+    model.setNumberOfGuests(3);
     homeView = new HomeView(document.querySelector("#page-content"));
     searchView = new SearchView(document.querySelector("#page-content"), model);
     overviewView = new OverviewView(document.querySelector("#page-content"), model);
