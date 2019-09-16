@@ -7,8 +7,9 @@ class DetailsView {
   async render(dishId) {
     const dish = await this.model.getDish(dishId);
     const num_of_guests = this.model.getNumberOfGuests();
+    const templates = new Templates(this.model);
     // set header and sidebar
-    this.container.insertAdjacentHTML('afterbegin', header);
+    this.container.insertAdjacentHTML('afterbegin', templates.header);
 
     let totalRow = document.createElement('div');
     totalRow.className = "row";
@@ -17,9 +18,7 @@ class DetailsView {
     let sideBar = document.createElement('div');
     sideBar.id = "sideBarView";
     sideBar.className = "container col-sm-3";
-    sideBar.innerHTML = sidebar;
-    sideBar.querySelector("#number-input").value = num_of_guests;
-    sideBar.querySelector("#sidebar-total-price").innerHTML = "SEK " + dish.pricePerServing * num_of_guests;
+    sideBar.innerHTML = templates.sidebar;
     totalRow.appendChild(sideBar);
 
     let detailsView = document.createElement('div');

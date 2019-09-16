@@ -4,9 +4,9 @@ class SearchView {
     this.model = model;
   }
 
-  async render(dishId) {
-    //this.container.insertAdjacentHTML('beforebegin', header);
-    this.container.insertAdjacentHTML('afterbegin', header);
+  async render() {
+    const templates = new Templates(this.model);
+    this.container.insertAdjacentHTML('afterbegin', templates.header);
 
     let content = document.createElement('div');
     content.id = "content";
@@ -15,7 +15,7 @@ class SearchView {
     let sideBar = document.createElement('div');
     sideBar.id = "sideBarView";
     sideBar.className = "container col-sm-3";
-    sideBar.innerHTML = sidebar;
+    sideBar.innerHTML = templates.sidebar;
     content.appendChild(sideBar);
     this.container.appendChild(content);
 
