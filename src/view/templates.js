@@ -9,7 +9,7 @@ class Templates {
           <h2 id="sidebar-header">My Dinner</h2>
           <div id="sidebar-guests">
             <span>People</span>
-            <input type="number" id="number-input" min="1" max="100" name="number-of-guests" class="value-num-guests" value="` + this.model.getNumberOfGuests() +
+            <input type="number" id="number-input" min="1" max="100" name="number-of-guests" value="` + this.model.getNumberOfGuests() +
             `">
             </div>
         </div>

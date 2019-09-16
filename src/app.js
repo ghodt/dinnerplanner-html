@@ -2,7 +2,7 @@ window.onload = function () {
   console.log("start");
   //We instantiate our model
   const model = new DinnerModel();
-
+  model.setNumberOfGuests(3);
   const container = document.getElementsByClassName("page-content")[0];
   const homeView = new HomeView(container);
   const overviewView = new OverviewView(container, model);

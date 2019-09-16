@@ -82,7 +82,7 @@ describe("DinnerPlanner App", () => {
   describe("Confirmation page", () => {
     beforeEach(async () => {
       await model.addDishToMenu(559251);
-      overviewView.render();
+      await overviewView.render();
     });
 
     it("exists", () => {
@@ -100,6 +100,7 @@ describe("DinnerPlanner App", () => {
       const valueHolders = document.getElementsByClassName("value-num-guests");
       expect(valueHolders.length).to.be.above(0);
       for (let v of valueHolders) {
+        console.log(v);
         expect(v).to.not.be.a("null");
         expect(v.innerHTML).to.equal(""+model.getNumberOfGuests());
       }
