@@ -42,13 +42,7 @@ class DinnerModel {
     let cost = 0;
     this.dinnerMenu.forEach(dish => {
       cost += dish.pricePerServing;
-      console.log("per serving: " + dish.pricePerServing);
     });
-
-    console.log("cost: " + cost);
-    console.log("num guests: " + this.numberOfGuests);
-    console.log("len: " + this.dinnerMenu.length);
-
     return cost * this.numberOfGuests;
   }
 
