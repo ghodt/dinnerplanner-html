@@ -31,7 +31,9 @@ class DetailsView {
 
     let detailsRow = document.createElement('div');
     detailsRow.className = "row details-row";
+    detailsView.appendChild(detailsRow);
 
+    // DETAILS
     let detailsDish = document.createElement('div');
     detailsDish.id = "details-dish";
     detailsDish.className = "col-6";
@@ -48,12 +50,13 @@ class DetailsView {
                 Go back to search
               </button>
             </div>`;
+    detailsRow.appendChild(detailsDish);
 
+    // INGREDIENTS
     let detailsIngredients = document.createElement('div');
     detailsIngredients.id = "details-ingredients";
     detailsIngredients.className = "col-6";
 
-    // set ingredients list
     let ingredients_list = document.createElement('ul');
     for(let i = 0; i < dish.extendedIngredients.length; i++) {
       let ing = document.createElement('li');
@@ -64,7 +67,6 @@ class DetailsView {
             <h3> Ingredients for <span class="value-num-guests">`+ this.model.getNumberOfGuests() + `</span> people </h3>
             <span id="ingredients-list">`+ ingredients_list.innerHTML + `</span>
             <div class="">
-
               <span class="text-right" id="details-total-price">
                 SEK 0
               </span>
@@ -73,8 +75,9 @@ class DetailsView {
               </span>
             </div>
           `;
+    detailsRow.appendChild(detailsIngredients);
 
-
+    // PREPARATION
     let detailsPrep = document.createElement('div');
     detailsPrep.id = "details-preparation-row";
     detailsPrep.className = "col-12";
@@ -92,33 +95,13 @@ class DetailsView {
     prep.appendChild(h);
     prep.appendChild(p);
     detailsPrep.appendChild(prep);
-
-
-  detailsRow.appendChild(detailsDish);
-  detailsRow.appendChild(detailsIngredients);
-  detailsRow.appendChild(detailsPrep);
-
-  detailsView.appendChild(detailsRow);
+    detailsRow.appendChild(detailsPrep);
 
 
 
 
+    this.afterRender();
 
-    // set dish image
-//    this.container.querySelector('#details-image').src = dish.image;
-
-
-  //  this.container.querySelector('#ingredients-list').appendChild(ingredients_list);
-
-    // set number of guests
-  /*  const guests = this.container.getElementsByClassName("value-num-guests");
-    for(let i = 0; i < guests.length; i++) {
-      guests[i].innerHTML = num_of_guests;
-    }*/
-
-    // set instructions
-    //const instructions = this.container.querySelector("#instructions");
-  //  instructions.innerHTML = dish.instructions;
   }
 
   afterRender() {
