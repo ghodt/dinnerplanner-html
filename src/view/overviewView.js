@@ -16,9 +16,10 @@ class OverviewView {
       const content = this.container.querySelector('#content');
       const dinnerOverview = content.appendChild(document.createElement('div'));
       dinnerOverview.classList.add("col-sm-12");
+      dinnerOverview.id = "overview-container"
       const div1 = dinnerOverview.appendChild(document.createElement('div'));
       div1.id = "my-dinner-go-back";
-      const paragraph = dinnerOverview.appendChild(document.createElement('P'));
+      const paragraph = dinnerOverview.appendChild(document.createElement('h2'));
       paragraph.innerHTML = 'My Dinner: <span class="value-num-guests">' + num_of_guests + "</span> people";
 
       let goBackBtnDiv = div1.appendChild(document.createElement('div'));
@@ -40,7 +41,7 @@ class OverviewView {
         let img = document.createElement('img');
         img.src = food.image;
         const dish_title = document.createElement('p');
-        dish_title.className = ".value-main-course-name";
+        dish_title.className = "value-main-course-name";
         dish_title.innerHTML = food.title;
         const price = document.createElement('p');
       //  price.className = ""

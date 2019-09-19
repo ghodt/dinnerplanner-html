@@ -17,7 +17,7 @@ class PrintoutView {
     dinnerOverview.id = "printout-container";
     const div1 = dinnerOverview.appendChild(document.createElement('div'));
     div1.id = "my-dinner-go-back";
-    const paragraph = dinnerOverview.appendChild(document.createElement('P'));
+    const paragraph = dinnerOverview.appendChild(document.createElement('h2'));
     paragraph.innerHTML = 'My Dinner: <span class="value-num-guests">' + num_of_guests + "</span> people";
 
     let goBackBtnDiv = div1.appendChild(document.createElement('div'));
@@ -48,7 +48,7 @@ class PrintoutView {
       const preparation = document.createElement('div');
       preparation.innerHTML = "<h2> Preparation </h2>";
       preparation.className = "container col-sm-7";
-      preparation.innerHTML += food.instructions;
+      preparation.innerHTML += '<p>' + food.instructions+ '</p>';
 
       img_div.appendChild(img);
       dish.appendChild(img_div);

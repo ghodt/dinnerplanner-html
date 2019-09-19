@@ -298,6 +298,10 @@ p {
 
 
 /* Overview */
+#overview-container {
+  padding: 0px;
+}
+
 #my-dinner-go-back {
   padding-top: 10px;
 	padding-bottom: 10px;
@@ -306,6 +310,12 @@ p {
   border-bottom-color: black;
 	display: flex;
   width: 100%;
+}
+
+
+#my-dinner-go-back > h2 {
+  font-size: 1.7em;
+  padding: 10px;
 }
 
 #my-dinner-overview {
@@ -328,6 +338,7 @@ p {
 }
 
 #toPrintBtn {
+}
 
 #printout-container {
   padding: 0px;
@@ -358,6 +369,6 @@ img {
 	height: 150px;
 }
 
-ul,ol {
-  font-size: 0.8em;
+#printout-container > ul, ol, p{
+  font-size: 1em;
 }
