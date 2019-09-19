@@ -19,19 +19,15 @@ window.onload = async function () {
     homeView.render();
   }
    if (document.getElementById("detailsView") != null) {
-         console.log("details");
     detailsView.render(559251);
   }
   else if (document.getElementById("overviewView") != null) {
-        console.log("overview");
     overviewView.render();
   }
   else if (document.getElementById("printoutView") != null) {
-        console.log("print");
     printoutView.render();
   }
   else if (document.getElementById("searchView") != null) {
-        console.log("search");
     searchView.render();
   }
 
