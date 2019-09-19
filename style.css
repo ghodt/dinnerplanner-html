@@ -112,7 +112,7 @@ p {
 }
 
 #sidebar-guests {
-  margin: 0.5em;
+  margin: 1em;
 }
 
 #number-input {
@@ -124,6 +124,9 @@ p {
   height: 30px;
   padding: 0px;
   margin: 0px;
+  border-width: 1.5px 0px;
+  border-style: solid;
+  border-color: black;
 }
 #sidebar-dish-name {
   width: 50%;
@@ -139,24 +142,40 @@ p {
   padding: 0.5em;
 }
 
+.sidebar-dish {
+  margin: 0.5em;
+  padding: 0.4em;
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: black;
+  background-color: #E5E5E5;
+
+}
+
+.sidebar-dish-cost {
+  float: right;
+}
+
 #sidebar-button {
   float: center;
+  margin: 1em;
 }
 
 #dishSearchView {
   width: 100%;
-	border-width: 2px;
-  border-style: solid;
-  border-color: black;
 	padding: 0px;
 	margin-left: 0px;
+}
 
+#find-dish {
+  font-size: 2em;
+  padding: 0.5em;
 }
 
 #search-bar {
 	padding: 0px;
 	border-width: 2px;
-  border-style: solid;
+  border-bottom-style: solid;
   border-color: black;
 }
 
@@ -174,6 +193,10 @@ p {
 
 #search-bar {
   height: 50px;
+}
+
+#search-bar input, button {
+  margin: 0.5em;
 }
 
 .details-row {
@@ -267,20 +290,29 @@ p {
 
 /* Overview */
 #my-dinner-go-back {
-  padding-top: 10px;
-	padding-bottom: 10px;
-
+  padding: 10px;
+  margin: 10px;
+  font-size: 1.7em;
 	display: flex;
 }
 
 #my-dinner-overview {
-	padding: 0px;
+	padding: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	display: flex;
 }
 #go-back-btn {
 	margin-left: 20px;
+}
+
+.back-button {
+  float: right;
+  text-align: right;
+}
+
+.dish {
+  margin: 15px;
 }
 
 #toPrintBtn {

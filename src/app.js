@@ -4,6 +4,7 @@ window.onload = async function () {
   const model = new DinnerModel();
   model.setNumberOfGuests(3);
   await model.addDishToMenu(559251);
+  await model.addDishToMenu(559250);
   console.log(model.getTotalMenuPrice());
   console.log(model.getFullMenu());
   const container = document.getElementsByClassName("page-content")[0];

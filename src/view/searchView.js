@@ -8,7 +8,7 @@ class SearchView {
 
   async render() {
     console.log(this.model.getTotalMenuPrice());
-    const templates = new Templates(this.model);
+    const templates = new Templates(this.model, this.container);
     this.container.insertAdjacentHTML('afterbegin', templates.header);
 
     const loader = document.createElement('div');
@@ -29,6 +29,7 @@ class SearchView {
     sideBar.querySelector('#sidebar-total-price').innerHTML = 'SEK <span class="value-total-price">' + this.model.getTotalMenuPrice();
     content.appendChild(sideBar);
     this.container.appendChild(content);
+    templates.addDishesToSidebar();
 
     let dishView = document.createElement('div');
     dishView.id = "dishSearchView";
@@ -47,7 +48,7 @@ class SearchView {
         <option value="dessert">Dessert</option>
         <option value="appetizer">Appetizer</option>
       </select>
-      <input id=type="submit" value="Search" class="btn btn-primary">
+      <button id=type="submit" value="Search" class="btn btn-primary">Search</button>
     </form>`;
     searchbar.innerHTML = searchbarHTML;
     content.appendChild(dishView);

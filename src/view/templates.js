@@ -1,6 +1,7 @@
 class Templates {
-  constructor(model) {
+  constructor(model, container) {
     this.model = model;
+    this.container = container;
     this.header = `<div class="header col-sm-12 d-flex align-items-center justify-content-center">
         <h1>Dinner Planner</h1>
       </div>`;
@@ -17,7 +18,7 @@ class Templates {
         <div id="sidebar-dish-name" class="float-left">Dish Name</div>
         <div id="sidebar-cost" class="float-right text-right">Cost</div>
       </div>
-      <div class="sidebar-selected dishes">
+      <div id="sidebar-selected-dishes">
       </div>
       <div>
         <div id="sidebar-total-price" class="text-right col-12"></div>
@@ -27,4 +28,20 @@ class Templates {
       </div>`;
   }
 
+  addDishesToSidebar() {
+    const menu = this.model.getFullMenu();
+    const guests = this.model.getNumberOfGuests();
+    let parent = this.container.querySelector('#sidebar-selected-dishes');
+
+    for(const food of menu){
+      let dish = document.createElement('div');
+      dish.className = "sidebar-dish";
+      dish.innerHTML = '<span class="sidebar-dish-title">' + food.title + '</span><span class="sidebar-dish-cost">' + food.pricePerServing * guests + '</span>';
+      parent.appendChild(dish);
+    }
+    let totalPrice = this.model.getTotalMenuPrice();
+    let price = this.container.querySelector('#sidebar-total-price');
+    price.innerHTML = totalPrice.toFixed(2) + " SEK";
+    parent.appendChild(price);
+  }
 }

@@ -7,7 +7,7 @@ class DetailsView {
   async render(dishId) {
     const dish = await this.model.getDish(dishId);
     const num_of_guests = this.model.getNumberOfGuests();
-    const templates = new Templates(this.model);
+    const templates = new Templates(this.model, this.container);
     // set header and sidebar
     this.container.insertAdjacentHTML('afterbegin', templates.header);
 
@@ -20,6 +20,7 @@ class DetailsView {
     sideBar.className = "container col-sm-3";
     sideBar.innerHTML = templates.sidebar;
     totalRow.appendChild(sideBar);
+    templates.addDishesToSidebar();
 
     let detailsView = document.createElement('div');
     detailsView.id = "details-container";
@@ -94,9 +95,6 @@ console.log(dish);
     prep.appendChild(p);
     detailsPrep.appendChild(prep);
     detailsRow.appendChild(detailsPrep);
-
-
-
 
     this.afterRender();
 
