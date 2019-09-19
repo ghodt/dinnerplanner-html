@@ -63,6 +63,10 @@ h1 {
 	font-size: 38px;
 }
 
+h2 {
+	font-size: 24px;
+}
+
 p {
 	margin: 10px;
 }
@@ -77,6 +81,11 @@ p {
   padding: 20px;
   font-size: 3em;
   font-weight: bold;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: grey;
+
+
 }
 
 .btn {
@@ -269,8 +278,11 @@ p {
 #my-dinner-go-back {
   padding-top: 10px;
 	padding-bottom: 10px;
-
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: black;
 	display: flex;
+  width: 100%;
 }
 
 #my-dinner-overview {
@@ -283,9 +295,19 @@ p {
 	margin-left: 20px;
 }
 
-#toPrintBtn {
-
+#printout-overview {
+  margin: 30px;
 }
+
+#printout-container {
+  padding: 0px;
+}
+
+.dish-row {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
 .value-num-guests {
 
 }
@@ -300,7 +322,12 @@ p {
   padding: 0px;
 }
 
+
 img {
-	width: 120px;
-	height: 100px;
+	width: 180px;
+	height: 150px;
+}
+
+ul,ol {
+  font-size: 0.8em;
 }
