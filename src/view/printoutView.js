@@ -37,17 +37,17 @@ class PrintoutView {
       dish.className = "dish-row row col-sm-12";
 
       const img_div = document.createElement('div');
-      img_div.className = "container col-sm-2";
+      img_div.className = "print-image";
       let img = document.createElement('img');
       img.src = food.image;
 
       const dish_details = document.createElement('div');
-      dish_details.className = "container value-main-course-name col-sm-3";
+      dish_details.className = "container value-main-course-name";
       dish_details.innerHTML = "<h2>" + food.title + "</h2><p> Here is a nice recipe for making the greatest " + food.title + " in the world.</p>";
 
       const preparation = document.createElement('div');
       preparation.innerHTML = "<h2> Preparation </h2>";
-      preparation.className = "container col-sm-7";
+      preparation.className = "print-preparation";
       preparation.innerHTML += '<p>' + food.instructions+ '</p>';
 
       img_div.appendChild(img);

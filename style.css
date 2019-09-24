@@ -384,13 +384,14 @@ p {
 }
 
 .dish-row {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .print-image {
   /* width: auto; */
   margin: 10px;
+  padding: 10px;
 }
 
 .value-num-guests {
@@ -399,11 +400,19 @@ p {
 .value-main-course-name {
 	font-size: 0.8em;
   width: 40%;
+  padding: 10px;
 
 }
 
 .print-preparation {
   width: 40%;
+  padding: 10px;
+}
+
+@media screen and (max-width:800px){
+  .value-main-course-name, .print-preparation {
+    width: 100%;
+  }
 }
 
 .value-total-price {
