@@ -33,11 +33,11 @@ class SearchView {
 
     let dishView = document.createElement('div');
     dishView.id = "dishSearchView";
-    dishView.className = "container col-sm-9 text-center flex-column row";
+    dishView.className = "text-center col-sm-9 row";
 
     let searchbar = document.createElement('div');
     searchbar.id = "search-bar";
-    searchbar.className = "col";
+  //  searchbar.className = "col";
     let searchbarHTML = `<h2 id="find-dish">Find a dish</h2>
     <form class="" action="" method="post">
       <input type="text" name="search-string" value="">
