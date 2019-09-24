@@ -106,7 +106,6 @@ class DetailsView {
     detailsRow.appendChild(detailsPrep);
 
     this.afterRender();
-
   }
 
   async sleep(ms) {
@@ -115,14 +114,13 @@ class DetailsView {
 
   async afterRender() {
         this.container.removeChild(loader);
-        await this.sleep(1000);
+        await this.sleep(2000);
         await this.model.addDishToMenu(559252);
         this.update(this.model, this.model.getFullMenu);
   }
 
   update(model, changeDetails) {
     if(changeDetails == model.getFullMenu) {
-      this.container.querySelector('#sidebar-selected-dishes').innerHTML = "";
       this.templates.addDishesToSidebar();
     }
   }

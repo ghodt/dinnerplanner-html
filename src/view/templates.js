@@ -32,6 +32,7 @@ class Templates {
     const menu = this.model.getFullMenu();
     const guests = this.model.getNumberOfGuests();
     let parent = this.container.querySelector('#sidebar-selected-dishes');
+    parent.innerHTML = "";
 
     for(const food of menu){
       let dish = document.createElement('div');
@@ -40,7 +41,10 @@ class Templates {
       parent.appendChild(dish);
     }
     let totalPrice = this.model.getTotalMenuPrice();
-    let price = this.container.querySelector('#sidebar-total-price');
+    console.log("Total price: " + totalPrice);
+    let price = document.createElement('div');
+    price.id = "sidebar-total-price";
+    price.className = "text-right col-12";
     price.innerHTML = totalPrice.toFixed(2) + " SEK";
     parent.appendChild(price);
   }
