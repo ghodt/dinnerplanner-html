@@ -14,22 +14,7 @@ window.onload = async function () {
   const detailsView = new DetailsView(container, model);
   const printoutView = new PrintoutView(container, model);
 
-  if(document.getElementById("homeView") != null) {
-    console.log("home");
-    homeView.render();
-  }
-   if (document.getElementById("detailsView") != null) {
-    detailsView.render(559251);
-  }
-  else if (document.getElementById("overviewView") != null) {
-    overviewView.render();
-  }
-  else if (document.getElementById("printoutView") != null) {
-    printoutView.render();
-  }
-  else if (document.getElementById("searchView") != null) {
-    searchView.render();
-  }
+  detailsView.render(559251);
 
 
 

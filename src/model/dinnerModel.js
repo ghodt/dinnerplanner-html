@@ -8,6 +8,17 @@ class DinnerModel {
     this.dinnerMenu = [];
     this.authHeader = {"X-Mashape-Key" : apiKey};
     this.endpoint = endpoint;
+    this._observers = [];
+  }
+
+  addObserver(observer) {
+    this._observers.push(observer);
+  }
+
+  notifyObservers(changeDetails){
+    for(var i = 0; i < this._observers.length; i++) {
+      this._observers[i].update(this, changeDetails);
+    }
   }
 
   setNumberOfGuests(num) {
@@ -15,6 +26,7 @@ class DinnerModel {
     if(num >= 0){
       this.numberOfGuests = num;
     }
+    this.notifyObservers(this.getNumberOfGuests);
   }
 
   getNumberOfGuests() {
@@ -56,6 +68,7 @@ class DinnerModel {
     const len = this.dinnerMenu.length;
     this.dinnerMenu.push(newDish);
     this.assert((len + 1) == this.dinnerMenu.length);
+    this.notifyObservers(this.getFullMenu);
   }
 
   //Removes dish from menu
@@ -63,7 +76,8 @@ class DinnerModel {
     if(this.dinnerMenu.length == 0){
       return;
     }
-        this.dinnerMenu.splice(this.dinnerMenu.indexOf(this.dinnerMenu.find(dish => dish.id == dish)), 1);
+    this.dinnerMenu.splice(this.dinnerMenu.indexOf(this.dinnerMenu.find(dish => dish.id == dish)), 1);
+    this.notifyObservers(this.getFullMenu);
   }
 
   //Returns all dishes of specific type (i.e. "starter", "main dish" or "dessert").

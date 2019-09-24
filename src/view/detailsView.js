@@ -2,14 +2,16 @@ class DetailsView {
   constructor(container, model) {
     this.container = container;
     this.model = model;
+    this.model.addObserver(this);
+    this.templates = new Templates(this.model, this.container);
   }
 
   async render(dishId) {
     const dish = await this.model.getDish(dishId);
+    console.log(dish);
     const num_of_guests = this.model.getNumberOfGuests();
-    const templates = new Templates(this.model, this.container);
     // set header and sidebar
-    this.container.insertAdjacentHTML('afterbegin', templates.header);
+    this.container.insertAdjacentHTML('afterbegin', this.templates.header);
 
     const loader = document.createElement('div');
     loader.id = "loader";
@@ -25,9 +27,9 @@ class DetailsView {
     let sideBar = document.createElement('div');
     sideBar.id = "sideBarView";
     sideBar.className = "container col-sm-3";
-    sideBar.innerHTML = templates.sidebar;
+    sideBar.innerHTML = this.templates.sidebar;
     totalRow.appendChild(sideBar);
-    templates.addDishesToSidebar();
+    this.templates.addDishesToSidebar();
 
     let detailsView = document.createElement('div');
     detailsView.id = "details-container";
@@ -82,7 +84,7 @@ class DetailsView {
             </div>
           `;
     detailsRow.appendChild(detailsIngredients);
-console.log(dish);
+    console.log(dish);
     // PREPARATION
     let detailsPrep = document.createElement('div');
     detailsPrep.id = "details-preparation-row";
@@ -107,7 +109,21 @@ console.log(dish);
 
   }
 
-  afterRender() {
+  async sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async afterRender() {
         this.container.removeChild(loader);
+        await this.sleep(1000);
+        await this.model.addDishToMenu(559252);
+        this.update(this.model, this.model.getFullMenu);
+  }
+
+  update(model, changeDetails) {
+    if(changeDetails == model.getFullMenu) {
+      this.container.querySelector('#sidebar-selected-dishes').innerHTML = "";
+      this.templates.addDishesToSidebar();
+    }
   }
 }
