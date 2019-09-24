@@ -42,7 +42,8 @@ class PrintoutView {
       img.src = food.image;
 
       const dish_details = document.createElement('div');
-      dish_details.className = "container value-main-course-name";
+      dish_details.className = "container";
+      dish_details.id = "print-dish-name";
       dish_details.innerHTML = "<h2>" + food.title + "</h2><p> Here is a nice recipe for making the greatest " + food.title + " in the world.</p>";
 
       const preparation = document.createElement('div');

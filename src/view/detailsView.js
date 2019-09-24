@@ -11,6 +11,13 @@ class DetailsView {
     // set header and sidebar
     this.container.insertAdjacentHTML('afterbegin', templates.header);
 
+    const loader = document.createElement('div');
+    loader.id = "loader";
+    loader.className = "spinner-border";
+    loader.role = "status";
+    loader.innerHTML = '<span class="sr-only">Loading...</span>';
+    this.container.appendChild(loader);
+
     let totalRow = document.createElement('div');
     totalRow.className = "row";
     this.container.appendChild(totalRow);
@@ -101,5 +108,6 @@ console.log(dish);
   }
 
   afterRender() {
+        this.container.removeChild(loader);
   }
 }
