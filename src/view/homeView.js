@@ -11,7 +11,7 @@ class HomeView {
       <h1>Dinner Planner</h1>
     </div>
     <div class="container text-center full-vh d-flex align-items-center justify-content-center flex-column">
-        <p class="text-center p-max-width">
+        <p class="text-center p-max-width" id="home-description">
           Hi and welcome to this sicc website where you can create dinner menus. Let's begin!
         </p>
         <div class="spacing-medium"></div>

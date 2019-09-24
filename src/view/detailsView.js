@@ -24,7 +24,7 @@ class DetailsView {
 
     let detailsView = document.createElement('div');
     detailsView.id = "details-container";
-    detailsView.className = "container col-sm-9 text-center full-vh d-flex align-items-center justify-content-center flex-column row";
+    detailsView.className = "container col-sm-9 text-center full-vh d-flex align-items-center justify-content-center flex-column";
 
     totalRow.appendChild(detailsView);
 
@@ -35,7 +35,7 @@ class DetailsView {
     // DETAILS
     let detailsDish = document.createElement('div');
     detailsDish.id = "details-dish";
-    detailsDish.className = "col-6";
+    detailsDish.className = "";
 
     detailsDish.innerHTML = `<div id="details-dish-name" class="text-left details-header">
               <h1> <span class="value-main-course-name">` + dish.title + `</span></h1>
@@ -54,7 +54,7 @@ class DetailsView {
     // INGREDIENTS
     let detailsIngredients = document.createElement('div');
     detailsIngredients.id = "details-ingredients";
-    detailsIngredients.className = "col-6";
+    detailsIngredients.className = "";
 
     let ingredients_list = document.createElement('ul');
     for(let i = 0; i < dish.extendedIngredients.length; i++) {
@@ -79,7 +79,7 @@ console.log(dish);
     // PREPARATION
     let detailsPrep = document.createElement('div');
     detailsPrep.id = "details-preparation-row";
-    detailsPrep.className = "col-12";
+    detailsPrep.className = "";
     let prep = document.createElement('div');
     prep.id = "details-preparation";
     prep.className = "col-12 text-left text-justify";

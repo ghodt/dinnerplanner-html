@@ -53,7 +53,10 @@ class OverviewView {
         dish.appendChild(img_div);
         div2.appendChild(dish);
       }
-      const totalPrice = div2.appendChild(document.createElement('p'));
+      const priceDiv = document.createElement('div');
+      priceDiv.appendChild(document.createElement('p'));
+      priceDiv.id = "price-div";
+      const totalPrice = div2.appendChild(priceDiv);
       const price = this.model.getTotalMenuPrice();
       totalPrice.innerHTML = 'Total: <span class="value-total-price">' + price.toFixed(2) + "</span> SEK";
 

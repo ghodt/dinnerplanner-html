@@ -98,6 +98,10 @@ p {
   border-color: #99632B;
 }
 
+#home-description {
+  margin: 40px;
+}
+
 #find-dish {
 	font-size: 24px;
 	padding-top: 10px;
@@ -112,6 +116,12 @@ p {
   padding: 0px;
 /*  margin-bottom: 0%;
   padding-bottom: 100%;*/
+}
+
+@media screen and (max-width:600px){
+  #sideBarView {
+    height: 50%;
+  }
 }
 
 #sidebar-header {
@@ -214,6 +224,7 @@ p {
 
 #details-dish {
   padding: 10px;
+  /* width: 50%; */
 }
 #details-image {
   height: auto;
@@ -242,10 +253,23 @@ p {
 
 #details-ingredients {
   border-width: 2px;
-  background-color: orange;
+  background-color: #FFE599;
   border-style: solid;
   border-color: black;
   padding: 0.7em;
+  /* width: 50%; */
+}
+
+@media screen and (min-width:800px){
+  #details-ingredients, #details-dish {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width:800px){
+  #details-ingredients, #details-dish {
+    width: 100%;
+  }
 }
 
 #details-ingredients > h3 {
@@ -322,8 +346,22 @@ p {
 	padding: 10px;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	display: flex;
+
 }
+
+@media screen and (min-width:600px){
+  #my-dinner-overview {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+#price-div {
+  margin: 15px;
+  padding: 10px;
+  font-size: 1.1em;
+}
+
 #go-back-btn {
 	margin-left: 20px;
 }
@@ -335,6 +373,7 @@ p {
 
 .dish {
   margin: 15px;
+  padding: 10px;
 }
 
 #toPrintBtn {
@@ -349,18 +388,30 @@ p {
   margin-bottom: 50px;
 }
 
+.print-image {
+  /* width: auto; */
+  margin: 10px;
+}
+
 .value-num-guests {
 
 }
 .value-main-course-name {
 	font-size: 0.8em;
+  width: 40%;
 
 }
+
+.print-preparation {
+  width: 40%;
+}
+
 .value-total-price {
 
 }
 .container {
   padding: 0px;
+  margin: 0px;
 }
 
 
