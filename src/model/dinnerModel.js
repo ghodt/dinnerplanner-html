@@ -5,6 +5,7 @@ class DinnerModel {
   constructor() {
     this.dishes = dishesConst;
     this.numberOfGuests = 0;
+    this.searchString = "";
     this.dinnerMenu = [];
     this.authHeader = {"X-Mashape-Key" : apiKey};
     this.endpoint = endpoint;
@@ -19,6 +20,15 @@ class DinnerModel {
     for(var i = 0; i < this._observers.length; i++) {
       this._observers[i].update(this, changeDetails);
     }
+  }
+
+  setSearchString(input) {
+    this.searchString = input;
+    this.notifyObservers(this.searchString);
+  }
+
+  getSearchString() {
+    return this.searchString;
   }
 
   setNumberOfGuests(num) {
