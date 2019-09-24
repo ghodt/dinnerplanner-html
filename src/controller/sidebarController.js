@@ -9,6 +9,7 @@ class SidebarController {
     renderView() {
       this.view.render();
         // TODO lab 3
+        // reeee
     }
 
     // TODO Lab 3
