@@ -75,4 +75,8 @@ class OverviewView {
     afterRender() {
 
     }
+
+    update(payload) {
+      // TODO Lab3
+    }
 }

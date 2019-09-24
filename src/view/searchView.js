@@ -87,4 +87,8 @@ class SearchView {
   afterRender() {
     this.container.removeChild(loader);
   }
+
+  update(payload) {
+    // TODO lab3
+  }
 }
