@@ -181,10 +181,18 @@ p {
 }
 
 #dishSearchView {
-  width: 100%;
+  width: 75%;
 	padding: 0px;
 	margin-left: 0px;
 }
+
+@media screen and (max-width:600px){
+  #dishSearchView {
+    width: 100%;
+  }
+}
+
+
 
 #find-dish {
   font-size: 2em;
@@ -192,13 +200,21 @@ p {
 }
 
 #search-bar {
+  width: 100%;
 	padding: 0px;
 	border-width: 2px;
   border-bottom-style: solid;
   border-color: black;
 }
 
+/*@media screen and (max-width:600px){
+  #search-bar {
+    width: 100%;
+  }
+}*/
+
 #dishItems {
+  height: auto;
 	padding: 0px;
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -206,12 +222,19 @@ p {
 	display: flex;
 }
 
+@media screen and (max-width:600px){
+  #dishItems {
+    width: 100%;
+    display: block;
+  }
+}
+
 .dish {
 	margin: 10px;
 }
 
 #search-bar {
-  height: 50px;
+  height: 20%;
 }
 
 #search-bar input, button {
@@ -318,6 +341,10 @@ p {
 #details-container {
 	margin: 0px;
 	padding-right: 0px;
+}
+
+#content {
+  height: 100%;
 }
 
 
