@@ -9,19 +9,10 @@ window.onload = async function () {
   console.log(model.getFullMenu());
 
   const container = document.getElementsByClassName("page-content")[0];
-  const homeView = new HomeView(container);
-  const overviewView = new OverviewView(container, model);
-  const searchView = new SearchView(container, model);
-  const detailsView = new DetailsView(container, model);
-  const printoutView = new PrintoutView(container, model);
-  //const searchController = new SearchController(searchView, model);
-  const detailsController = new DetailsController(detailsView, model);
+  const nav = new Navigator(container, model);
 
-  detailsController.renderView(559250);
-
-  // let navigate = function (message){
-  //   console.log(message);
-  // }
+  nav.navigate("details");
+  //detailsController.renderView(559250);
 
   /**
    * IMPORTANT: app.js is the only place where you are allowed to
@@ -31,11 +22,3 @@ window.onload = async function () {
    */
 
 };
-
-// navigate(message){
-//   console.log(message);
-// }
-
-// showSearchView() {
-//   searchView.render();
-// };

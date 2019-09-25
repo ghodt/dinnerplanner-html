@@ -1,16 +1,17 @@
 class DetailsController {
-    constructor(view, model) {
+    constructor(view, model, nav) {
         this.view = view;
         this.model = model;
-        // TODO lab 3
+        this.nav = nav;
     }
 
     addEventListeners(dishId) {
       let model = this.model;
+      let nav = this.nav;
       let backBtn = this.view.container.querySelector("#go-back-to-searchBtn");
       let backListener = function(evt){
         console.log("backkkkk");
-        navigate("go backkk");
+        nav.navigate("details-back");
       };
       backBtn.addEventListener("click", backListener, false);
 
