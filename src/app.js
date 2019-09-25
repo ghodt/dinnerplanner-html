@@ -7,16 +7,21 @@ window.onload = async function () {
   await model.addDishToMenu(559250);
   console.log(model.getTotalMenuPrice());
   console.log(model.getFullMenu());
+
   const container = document.getElementsByClassName("page-content")[0];
   const homeView = new HomeView(container);
   const overviewView = new OverviewView(container, model);
   const searchView = new SearchView(container, model);
   const detailsView = new DetailsView(container, model);
   const printoutView = new PrintoutView(container, model);
+  //const searchController = new SearchController(searchView, model);
+  const detailsController = new DetailsController(detailsView, model);
 
-  detailsView.render(559251);
+  detailsController.renderView(559250);
 
-
+  // let navigate = function (message){
+  //   console.log(message);
+  // }
 
   /**
    * IMPORTANT: app.js is the only place where you are allowed to
@@ -26,3 +31,11 @@ window.onload = async function () {
    */
 
 };
+
+// navigate(message){
+//   console.log(message);
+// }
+
+// showSearchView() {
+//   searchView.render();
+// };

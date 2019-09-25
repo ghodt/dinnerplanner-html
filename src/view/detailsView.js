@@ -114,14 +114,19 @@ class DetailsView {
 
   async afterRender() {
         this.container.removeChild(loader);
-        await this.sleep(2000);
-        await this.model.addDishToMenu(559252);
+        // await this.sleep(2000);
+        // await this.model.addDishToMenu(559252);
+        // this.model.setNumberOfGuests(6);
         this.update(this.model, this.model.getFullMenu);
   }
 
   update(model, changeDetails) {
     if(changeDetails == model.getFullMenu) {
       this.templates.addDishesToSidebar();
+    } else if (changeDetails == model.getNumberOfGuests) {
+      let input = this.container.querySelector('#number-input');
+      input.value = model.getNumberOfGuests();
     }
+
   }
 }
