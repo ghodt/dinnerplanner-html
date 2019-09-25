@@ -202,17 +202,21 @@ p {
 
 #search-bar {
   width: 100%;
+  /* height: 30%; */
 	padding: 0px;
 	border-width: 2px;
   border-bottom-style: solid;
   border-color: black;
 }
+#search-bar input, button {
+  margin: 0.5em;
+}
 
-/*@media screen and (max-width:600px){
+@media screen and (max-width:600px){
   #search-bar {
-    width: 100%;
+    height: 30%;
   }
-}*/
+}
 
 #dishItems {
   height: auto;
@@ -232,14 +236,6 @@ p {
 
 .dish {
 	margin: 10px;
-}
-
-#search-bar {
-  height: 20%;
-}
-
-#search-bar input, button {
-  margin: 0.5em;
 }
 
 .details-row {
