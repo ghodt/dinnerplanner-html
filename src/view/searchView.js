@@ -4,7 +4,6 @@ class SearchView {
   constructor(container, model) {
     this.container = container;
     this.model = model;
-    this.model.addObserver(this);
     this.templates = new Templates(this.model, this.container);
   }
 
@@ -40,14 +39,14 @@ class SearchView {
     let searchbarHTML = `<h2 id="find-dish">Find a dish</h2>
     <form class="" action="" method="post">
       <input id="search-input" type="text" name="search-string" value="">
-      <select name="dish-type">
+      <select id="drop-down" name="dish-type">
         <option value="all">All</option>
         <option value="main-course">Main course</option>
         <option value="side-dish">Side dish</option>
         <option value="dessert">Dessert</option>
         <option value="appetizer">Appetizer</option>
       </select>
-      <button id=type="submit" value="Search" class="btn btn-primary">Search</button>
+      <button id="submit-btn" type="button" value="Search" class="btn btn-primary">Search</button>
     </form>`;
     searchbar.innerHTML = searchbarHTML;
     content.appendChild(dishView);
@@ -55,7 +54,7 @@ class SearchView {
     let dishItems = document.createElement('div');
     dishItems.id = "dishItems";
     dishItems.className = "col row";
-    this.model.setSearchString("Breakfast Pizza");
+    this.model.setSearchInput("Breakfast Pizza");
     await this.addDishes(dishItems);
      dishView.appendChild(searchbar);
      dishView.appendChild(dishItems);
@@ -64,7 +63,10 @@ class SearchView {
   }
 
   async addDishes(dishItems) {
-    let dishes = await this.model.getAllDishes("", this.model.getSearchString());
+    let searchInput = this.model.getSearchInput().split("  ");
+    console.log("type: " + searchInput[1]);
+    console.log("query: " + searchInput[0]);
+    let dishes = await this.model.getAllDishes(searchInput[1], searchInput[0]);
 
     for(let i = 0; i < dishes.length; i++) {
       let dish = document.createElement('div');
@@ -91,12 +93,13 @@ class SearchView {
   }
 
   async afterRender() {
+    this.model.addObserver(this);
     this.container.removeChild(loader);
-    await this.sleep(4000);
-    await this.model.addDishToMenu(2);
-    await this.update(this.model, this.model.getFullMenu);
-    this.model.setSearchString("chocolate");
-    await this.update(this.model, this.model.getSearchString);
+//    await this.sleep(1000);
+//    await this.model.addDishToMenu(2);
+//    await this.update(this.model, this.model.getFullMenu);
+//    this.model.setSearchInput("chocolate");
+//    await this.update(this.model, this.model.getSearchInput);
 
 
   }
@@ -107,9 +110,10 @@ class SearchView {
       this.container.querySelector('#sidebar-selected-dishes').innerHTML = "";
       this.templates.addDishesToSidebar();
     }
-    if(changeDetails == model.getSearchString) {
+    if(changeDetails == model.getSearchInput) {
       console.log("seeearch");
       let dishItems = this.container.querySelector('#dishItems');
+      console.log(this.container);
       dishItems.innerHTML = "";
       // append loader
       await this.addDishes(dishItems);

@@ -5,7 +5,7 @@ class DinnerModel {
   constructor() {
     this.dishes = dishesConst;
     this.numberOfGuests = 0;
-    this.searchString = "";
+    this.searchInput = "";
     this.dinnerMenu = [];
     this.authHeader = {"X-Mashape-Key" : apiKey};
     this.endpoint = endpoint;
@@ -16,19 +16,26 @@ class DinnerModel {
     this._observers.push(observer);
   }
 
-  notifyObservers(changeDetails){
+  async notifyObservers(changeDetails){
     for(var i = 0; i < this._observers.length; i++) {
-      this._observers[i].update(this, changeDetails);
+      await this._observers[i].update(this, changeDetails);
     }
   }
 
-  setSearchString(input) {
-    this.searchString = input;
-    this.notifyObservers(this.searchString);
+  setSearchInput(input, category) {
+    if(input == undefined) {
+      input = "";
+    }
+    if(category == undefined) {
+      category = "";
+    }
+    
+    this.searchInput = input + "  " + category;
+    this.notifyObservers(this.getSearchInput);
   }
 
-  getSearchString() {
-    return this.searchString;
+  getSearchInput() {
+    return this.searchInput;
   }
 
   setNumberOfGuests(num) {
