@@ -24,6 +24,11 @@ class Navigator {
     this.container.innerHTML = "";
   }
 
+  async getDishDetails(id) {
+    this.clearView();
+    await this.detailsController.renderView(id);
+  }
+
   renderSearch(){
     this.clearView();
     this.searchController.renderView();

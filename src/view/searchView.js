@@ -36,9 +36,12 @@ class SearchView {
 
     let searchbar = document.createElement('div');
     searchbar.id = "search-bar";
+    document.cookie = 'searchString=chocolate';
+    let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchString\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
     let searchbarHTML = `<h2 id="find-dish">Find a dish</h2>
     <form class="" action="" method="post">
-      <input id="search-input" type="text" name="search-string" value="">
+      <input id="search-input" type="text" name="search-string" value="` + cookieValue + `">
       <select id="drop-down" name="dish-type">
         <option value="all">All</option>
         <option value="main-course">Main course</option>
@@ -54,7 +57,7 @@ class SearchView {
     let dishItems = document.createElement('div');
     dishItems.id = "dishItems";
     dishItems.className = "col row";
-    this.model.setSearchInput("Breakfast Pizza");
+    this.model.setSearchInput(cookieValue);
     await this.addDishes(dishItems);
      dishView.appendChild(searchbar);
      dishView.appendChild(dishItems);
@@ -66,11 +69,13 @@ class SearchView {
     let searchInput = this.model.getSearchInput().split("  ");
     console.log("type: " + searchInput[1]);
     console.log("query: " + searchInput[0]);
+    document.cookie='searchString=chocolate;bla=ble';
     let dishes = await this.model.getAllDishes(searchInput[1], searchInput[0]);
 
     for(let i = 0; i < dishes.length; i++) {
       let dish = document.createElement('div');
       dish.className = "dish";
+      dish.id = dishes[i].id;
       let dishContent = document.createElement('div');
       let img = document.createElement('img');
       img.src = "https://spoonacular.com/recipeImages/" + dishes[i].image;
