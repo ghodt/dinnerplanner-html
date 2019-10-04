@@ -15,8 +15,7 @@ class Navigator {
 
   navigate(message){
     if(message == "details"){
-      this.sidebarController.renderView();
-      this.detailsController.renderView(559250);
+      this.getDishDetails(559250);
     }
     if(message == "details-back"){
       this.renderSearch();
