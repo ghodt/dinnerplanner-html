@@ -71,12 +71,7 @@ class Navigator {
     this.sidebarController.renderView();
   }
 
-<<<<<<< HEAD
-  renderSearch(){
-    console.log("rendering search");
-=======
   async renderSearch(){
->>>>>>> c4927e2ea60d7ab1f836f6632e6374e348d2aa14
     this.clearView();
     this.sidebarController.renderView();
     await this.searchController.renderView();
