@@ -17,21 +17,25 @@ class DinnerModel {
   }
 
   async notifyObservers(changeDetails){
+    console.log("notifyObservers, changeDetails: " + changeDetails);
     for(var i = 0; i < this._observers.length; i++) {
       await this._observers[i].update(this, changeDetails);
     }
   }
 
-  setSearchInput(input, category) {
+  async setSearchInput(input, category, clicked) {
+    console.log("setSearchInput, input: " + input + " category: " + category);
     if(input == undefined) {
       input = "";
     }
     if(category == undefined) {
       category = "";
     }
-    
+
     this.searchInput = input + "  " + category;
-    this.notifyObservers(this.getSearchInput);
+    if(clicked) {
+      await this.notifyObservers(this.getSearchInput);
+    }
   }
 
   getSearchInput() {

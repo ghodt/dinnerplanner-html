@@ -13,17 +13,16 @@ class Navigator {
     this.detailsController = new DetailsController(this.detailsView, this.model, this);
   }
 
-  navigate(message){
+  async navigate(message){
     if(message == "details"){
       this.getDishDetails(559250);
     }
-    if(message == "details-back"){
-      this.renderSearch();
+    if(message == "details-back" | message == "search"){
+      await this.renderSearch();
     }
   }
 
   clearView(){
-    console.log("cleared view");
     this.container.innerHTML = "";
   }
 
@@ -31,7 +30,6 @@ class Navigator {
     console.log("getDishDetails");
 
     this.clearView();
-    this.sidebarView.render();
     this.sidebarController.renderView();
     await this.detailsController.renderView(id);
   }
@@ -40,10 +38,10 @@ class Navigator {
     this.sidebarController.renderView();
   }
 
-  renderSearch(){
+  async renderSearch(){
     this.clearView();
     this.sidebarController.renderView();
-    this.searchController.renderView();
+    await this.searchController.renderView();
   }
 
 }
