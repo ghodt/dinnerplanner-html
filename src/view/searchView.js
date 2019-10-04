@@ -20,7 +20,6 @@ class SearchView {
 
     let content = this.container.querySelector('#totalRow');
     this.container.appendChild(content);
-    this.templates.addDishesToSidebar();
 
     let dishView = document.createElement('div');
     dishView.id = "dishSearchView";
@@ -84,7 +83,6 @@ class SearchView {
     }
   }
 
-
   async sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
@@ -92,33 +90,18 @@ class SearchView {
   async afterRender() {
     this.model.addObserver(this);
     this.container.removeChild(loader);
-//    await this.sleep(1000);
-//    await this.model.addDishToMenu(2);
-//    await this.update(this.model, this.model.getFullMenu);
-//    this.model.setSearchInput("chocolate");
-//    await this.update(this.model, this.model.getSearchInput);
-
-
   }
 
   async update(model, changeDetails) {
-    console.log("update: " + changeDetails);
+    // console.log("update: " + changeDetails);
     if(changeDetails == model.getFullMenu) {
-      this.container.querySelector('#sidebar-selected-dishes').innerHTML = "";
-      this.templates.addDishesToSidebar();
+      // this.container.querySelector('#sidebar-selected-dishes').innerHTML = "";
+      //this.templates.addDishesToSidebar();
     }
     if(changeDetails == model.getSearchInput) {
       console.log("seeearch");
-
       let dishItems = this.container.querySelector('#dishItems');
-
       dishItems.innerHTML = "";
-      // append loader
-    //  await this.addDishes(dishItems);
-
-
-
-
     }
   }
 }

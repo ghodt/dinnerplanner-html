@@ -21,18 +21,7 @@ class DetailsView {
     loader.role = "status";
     loader.innerHTML = '<span class="sr-only">Loading...</span>';
     this.container.appendChild(loader);
-
-    // let totalRow = document.createElement('div');
-    // totalRow.className = "row";
-    // this.container.appendChild(totalRow);
     let totalRow = this.container.querySelector('#totalRow');
-
-    // let sideBar = document.createElement('div');
-    // sideBar.id = "sideBarView";
-    // sideBar.className = "container col-sm-3";
-    // sideBar.innerHTML = this.templates.sidebar;
-    // totalRow.appendChild(sideBar);
-    // this.templates.addDishesToSidebar();
 
     let detailsView = document.createElement('div');
     detailsView.id = "details-container";
@@ -56,7 +45,7 @@ class DetailsView {
             <div class="">
               <img id="details-image" src="` +  dish.image + `">
             </div>
-            <p id="details-description" class="text-justify"> Here is some facts about this dish. </p>
+            <p id="details-description" class="text-justify"> Here are some facts about this dish. </p>
             <div class="text-left">
               <button type="button" id="go-back-to-searchBtn" class="btn btn-lg btn-primary align-self-end">
                 Go back to search
@@ -94,7 +83,6 @@ class DetailsView {
             </span>
           `;
     detailsRow.appendChild(detailsIngredients);
-    console.log(dish);
     // PREPARATION
     let detailsPrep = document.createElement('div');
     detailsPrep.id = "details-preparation-row";
@@ -124,41 +112,41 @@ class DetailsView {
 
   async afterRender() {
         this.container.removeChild(loader);
-        // this.update(this.model, this.model.getFullMenu);
   }
 
   update(model, changeDetails) {
     if (changeDetails == model.getNumberOfGuests) {
       this.updateIngredients(model);
     }
-
   }
 
-  async updateIngredients(model) {
-    // console.log('updating ingreddejd');
+  updateIngredients(model) {
     let ingredientContent = this.container.querySelector("#ingredient-content");
-    ingredientContent.innerHTML = "";
-    const dish = this.dish;
+    if(ingredientContent != null){
+      ingredientContent.innerHTML = "";
+      const dish = this.dish;
 
-    let num_of_guests = model.getNumberOfGuests();
-    let ingredients_list = document.createElement('ul');
-    for(let i = 0; i < dish.extendedIngredients.length; i++) {
-      let ing = document.createElement('li');
-      let ingredientAmount = dish.extendedIngredients[i].amount * num_of_guests;
-      if(!(ingredientAmount % 1) == 0){
-        ingredientAmount = ingredientAmount.toFixed(2);
+      let num_of_guests = model.getNumberOfGuests();
+      let ingredients_list = document.createElement('ul');
+      for(let i = 0; i < dish.extendedIngredients.length; i++) {
+        let ing = document.createElement('li');
+        let ingredientAmount = dish.extendedIngredients[i].amount * num_of_guests;
+        if(!(ingredientAmount % 1) == 0){
+          ingredientAmount = ingredientAmount.toFixed(2);
+        }
+        ing.innerHTML = ingredientAmount + " " + dish.extendedIngredients[i].unit + " " + dish.extendedIngredients[i].originalName;
+        ingredients_list.appendChild(ing);
       }
-      ing.innerHTML = ingredientAmount + " " + dish.extendedIngredients[i].unit + " " + dish.extendedIngredients[i].originalName;
-      ingredients_list.appendChild(ing);
+      ingredientContent.innerHTML = `
+            <h3 id="details-ingredients-header"> Ingredients for <span class="value-num-guests">`+ num_of_guests + `</span> people </h3>
+            <span class="text-left" id="ingredients-list">`+ ingredients_list.innerHTML + `</span>
+            <div class="">
+              <span class="text-right" id="details-total-price">
+                SEK `+ (dish.pricePerServing * num_of_guests).toFixed(2) + `
+              </span>
+            </div>
+            `;
     }
-    ingredientContent.innerHTML = `
-          <h3 id="details-ingredients-header"> Ingredients for <span class="value-num-guests">`+ num_of_guests + `</span> people </h3>
-          <span class="text-left" id="ingredients-list">`+ ingredients_list.innerHTML + `</span>
-          <div class="">
-            <span class="text-right" id="details-total-price">
-              SEK `+ (dish.pricePerServing * num_of_guests).toFixed(2) + `
-            </span>
-          </div>
-          `;
+
   }
 }

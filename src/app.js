@@ -5,8 +5,8 @@ window.onload = async function () {
   model.setNumberOfGuests(1);
   // await model.addDishToMenu(559251);
   // await model.addDishToMenu(559250);
-  console.log(model.getTotalMenuPrice());
-  console.log(model.getFullMenu());
+  // console.log(model.getTotalMenuPrice());
+  // console.log(model.getFullMenu());
 
   const container = document.getElementsByClassName("page-content")[0];
   const nav = new Navigator(container, model);

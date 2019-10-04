@@ -32,9 +32,6 @@ class SearchController {
       }.bind(this);
 
       searchBtn.addEventListener('click', searchListener, false);
-  //  let dishes = this.view.container.getElementsByClassName("dish");
-  //  let searchInput = this.model.getSearchInput().split("  ");
-  //  this.addDishListeners(dishes, searchInput[1], searchInput[0]);
 
       let confirmDinnerBtn = this.view.container.querySelector('#sidebar-button');
       let confirmListener = function(event) {
@@ -47,11 +44,11 @@ class SearchController {
       let dishListener = function(event) {
         let dishId = parseInt(event.target.parentElement.parentElement.id);
         console.log("dishId: " + dishId);
-        this.nav.getDishDetails(dishId);
+        this.nav.renderDetails(dishId);
       }.bind(this);
     //  document.cookie='searchString=chocolate;bla=ble';
       let dishes = await this.model.getAllDishes(input, category);
-      console.log(dishItems);
+      // console.log(dishItems);
 
       for(let i = 0; i < dishes.length; i++) {
         let dish = document.createElement('div');

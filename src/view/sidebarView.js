@@ -37,39 +37,45 @@ class SidebarView {
   }
 
   afterRender() {
-    this.addDishesToSidebar();
+    this.addDishesToSidebar(this.model);
   }
 
   update(model, changeDetails) {
     if(changeDetails == model.getFullMenu) {
-      this.addDishesToSidebar();
-    } else if (changeDetails == model.getNumberOfGuests) {
-      let input = this.container.querySelector('#number-input');
-      input.value = model.getNumberOfGuests();
+      this.addDishesToSidebar(model);
+    }
+    if(changeDetails == model.getNumberOfGuests) {
+      // let input = this.container.querySelector('#number-input');
+      // input.value = model.getNumberOfGuests();
+      this.addDishesToSidebar(model);
     }
   }
 
-  addDishesToSidebar() {
-    const menu = this.model.getFullMenu();
-    const guests = this.model.getNumberOfGuests();
+  addDishesToSidebar(model) {
+    console.log("add dishes");
+    const menu = model.getFullMenu();
+    console.log(menu);
+    const guests = model.getNumberOfGuests();
     let parent = this.container.querySelector('#sidebar-selected-dishes');
-    if(parent != 'null'){
-      parent.innerHTML = "";
-      for(const food of menu){
-        let dish = document.createElement('div');
-        console.log(food.pricePerServing * guests);
-        let dishCost = (food.pricePerServing * guests).toFixed(2);
-        dish.className = "sidebar-dish";
-        dish.innerHTML = '<span class="sidebar-dish-title">' + food.title + '</span><span class="sidebar-dish-cost">' + dishCost + '</span>';
-        parent.appendChild(dish);
-      }
-      let totalPrice = this.model.getTotalMenuPrice();
-      let price = document.createElement('div');
-      price.id = "sidebar-total-price";
-      price.className = "text-right col-12";
-      price.innerHTML = totalPrice.toFixed(2) + " SEK";
-      parent.appendChild(price);
+    parent.innerHTML = "";
+    for(const food of menu){
+      console.log(food);
+      let dish = document.createElement('div');
+      let dishCost = (food.pricePerServing * guests).toFixed(2);
+      dish.className = "sidebar-dish";
+      dish.innerHTML = '<span class="sidebar-dish-title">' + food.title + '</span><span class="sidebar-dish-cost">' + food.pricePerServing * guests + '</span>';
+      parent.appendChild(dish);
+      console.log(parent);
     }
+    let p = document.createElement('p')
+    p.innerHTML = "reeeeeee";
+    // parent.appendChild(p);
+    let totalPrice = this.model.getTotalMenuPrice();
+    let price = document.createElement('div');
+    price.id = "sidebar-total-price";
+    price.className = "text-right col-12";
+    price.innerHTML = totalPrice.toFixed(2) + " SEK";
+    parent.appendChild(price);
   }
 
 }

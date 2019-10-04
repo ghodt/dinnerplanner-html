@@ -17,14 +17,13 @@ class DinnerModel {
   }
 
   async notifyObservers(changeDetails){
-    console.log("notifyObservers, changeDetails: " + changeDetails);
     for(var i = 0; i < this._observers.length; i++) {
       await this._observers[i].update(this, changeDetails);
     }
   }
 
   async setSearchInput(input, category, clicked) {
-    console.log("setSearchInput, input: " + input + " category: " + category);
+    // console.log("setSearchInput, input: " + input + " category: " + category);
     if(input == undefined) {
       input = "";
     }

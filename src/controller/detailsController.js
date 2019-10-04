@@ -18,9 +18,7 @@ class DetailsController {
 
       let addBtn = this.view.container.querySelector("#details-add-button");
       let addListener = function(evt){
-        console.log("add dish to menu");
         model.addDishToMenu(dishId);
-        // view.addDishesToSidebar();
       };
       addBtn.addEventListener("click", addListener, false);
     }

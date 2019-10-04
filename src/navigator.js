@@ -26,7 +26,7 @@ class Navigator {
         break;
 
       case "details":
-        this.getDishDetails(559250);
+        this.renderDetails(559250);
         break;
 
       case "start":
@@ -45,7 +45,7 @@ class Navigator {
         break;
 
       default:
-        this.getDishDetails(message);
+        this.renderDetails(message);
         break;
     }
   }
@@ -55,13 +55,10 @@ class Navigator {
   }
 
   renderHome() {
-    console.log("redering home");
     this.homeController.renderView();
   }
 
-  async getDishDetails(id) {
-    // console.log("getDishDetails");
-
+  async renderDetails(id) {
     this.clearView();
     this.sidebarController.renderView();
     await this.detailsController.renderView(id);
@@ -71,10 +68,10 @@ class Navigator {
     this.sidebarController.renderView();
   }
 
-  async renderSearch(){
+  renderSearch(){
     this.clearView();
     this.sidebarController.renderView();
-    await this.searchController.renderView();
+    this.searchController.renderView();
   }
 
   renderOverview() {
