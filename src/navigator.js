@@ -19,30 +19,35 @@ class Navigator {
   }
 
   navigate(message){
-    if(message == "home"){
-      this.renderHome();
-    }
-    if(message == "start"){
-      this.renderSearch();
-    }
-    if(message == "details"){
-      this.getDishDetails(559250);
-    }
-    if(message == "details-back"){
-      this.renderSearch();
-    }
-    if(message == "overview-back" || "printout-back"){
-      this.renderSearch();
-    }
-    if(message == "confirm-dinner"){
-      // console.log("Render overview");
-      this.renderOverview();
-    }
-    if(message == "print"){
-      // console.log("Render overview");
-      this.renderPrintout();
-    }
+    console.log("Message: " + message);
+    switch (message) {
+      case "home":
+        this.renderHome();
+        break;
 
+      case "details":
+        this.getDishDetails(559250);
+        break;
+
+      case "start":
+      case "details-back":
+      case "overview-back":
+      case "printout-back":
+        this.renderSearch();
+        break;
+
+      case "confirm-dinner":
+        this.renderOverview();
+        break;
+
+      case "print":
+        this.renderPrintout();
+        break;
+
+      default:
+        this.getDishDetails(message);
+        break;
+    }
   }
 
   clearView() {
@@ -51,6 +56,7 @@ class Navigator {
   }
 
   renderHome() {
+    console.log("redering home");
     this.homeController.renderView();
   }
 
@@ -68,6 +74,7 @@ class Navigator {
   }
 
   renderSearch(){
+    console.log("rendering search");
     this.clearView();
     this.sidebarController.renderView();
     this.searchController.renderView();
