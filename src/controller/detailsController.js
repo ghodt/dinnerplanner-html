@@ -1,5 +1,7 @@
 class DetailsController {
     constructor(view, model, nav) {
+      console.log("created details controller");
+
         this.view = view;
         this.model = model;
         this.nav = nav;
@@ -15,7 +17,7 @@ class DetailsController {
       };
       backBtn.addEventListener("click", backListener, false);
 
-      let addBtn = document.getElementById("details-add-button");
+      let addBtn = this.view.container.querySelector("#details-add-button");
       let addListener = function(evt){
         model.addDishToMenu(dishId);
       };

@@ -20,16 +20,17 @@ class DetailsView {
     loader.innerHTML = '<span class="sr-only">Loading...</span>';
     this.container.appendChild(loader);
 
-    let totalRow = document.createElement('div');
-    totalRow.className = "row";
-    this.container.appendChild(totalRow);
+    // let totalRow = document.createElement('div');
+    // totalRow.className = "row";
+    // this.container.appendChild(totalRow);
+    let totalRow = this.container.querySelector('#totalRow');
 
-    let sideBar = document.createElement('div');
-    sideBar.id = "sideBarView";
-    sideBar.className = "container col-sm-3";
-    sideBar.innerHTML = this.templates.sidebar;
-    totalRow.appendChild(sideBar);
-    this.templates.addDishesToSidebar();
+    // let sideBar = document.createElement('div');
+    // sideBar.id = "sideBarView";
+    // sideBar.className = "container col-sm-3";
+    // sideBar.innerHTML = this.templates.sidebar;
+    // totalRow.appendChild(sideBar);
+    // this.templates.addDishesToSidebar();
 
     let detailsView = document.createElement('div');
     detailsView.id = "details-container";
@@ -122,7 +123,7 @@ class DetailsView {
 
   update(model, changeDetails) {
     if(changeDetails == model.getFullMenu) {
-      this.templates.addDishesToSidebar();
+      // this.templates.addDishesToSidebar();
     } else if (changeDetails == model.getNumberOfGuests) {
       let input = this.container.querySelector('#number-input');
       input.value = model.getNumberOfGuests();

@@ -1,26 +1,66 @@
 class SidebarView {
-  constructor(container) {
+  constructor(container, model) {
     this.container = container;
-    this.guestsInput = null;
+    this.model = model;
+    // this.guestsInput = null;
   }
-  
+
   render() {
-    var content = /* template */ `
-    <div class="container text-center full-vh d-flex align-items-center justify-content-center flex-column">
-      <input type="number" class="input-num-guests" value="1">
-        Guests
-      </inut>
+    console.log("renderrrr");
+    var content =  `
+    <div>
+      <h2 id="sidebar-header">My Dinner</h2>
+      <div id="sidebar-guests">
+        <span>People</span>
+        <input type="number" id="number-input" class="value-num-guests-input" min="1" max="100" name="number-of-guests" value="` + this.model.getNumberOfGuests() +
+        `">
+        </div>
     </div>
+  <div id="sidebar-mid-section" class="col-12 row align-items-center">
+    <div id="sidebar-dish-name" class="float-left">Dish Name</div>
+    <div id="sidebar-cost" class="float-right text-right">Cost</div>
+  </div>
+  <div id="sidebar-selected-dishes">
+  </div>
+  <div>
+    <div id="sidebar-total-price" class="text-right col-12"></div>
+    <div class="text-center">
+      <button type="button" class="btn btn-primary" id="sidebar-button" name="confirm-button">Confirm Dinner</button>
+    </div>
+  </div>
     `;
-    this.container.innerHTML = content;
+    this.container.querySelector('#sideBarView').innerHTML = content;
     this.afterRender();
   }
 
   afterRender() {
-    this.startBtn = this.container.getElementsByClassName("value-num-guests");
+    this.addDishesToSidebar();
+  //this.startBtn = this.container.getElementsByClassName("value-num-guests");
   }
 
   update(payload) {
     // TODO Lab3
   }
+
+  addDishesToSidebar() {
+    const menu = this.model.getFullMenu();
+    const guests = this.model.getNumberOfGuests();
+    let parent = this.container.querySelector('#sidebar-selected-dishes');
+    parent.innerHTML = "";
+
+    for(const food of menu){
+      let dish = document.createElement('div');
+      dish.className = "sidebar-dish";
+      dish.innerHTML = '<span class="sidebar-dish-title">' + food.title + '</span><span class="sidebar-dish-cost">' + food.pricePerServing * guests + '</span>';
+      parent.appendChild(dish);
+    }
+    let totalPrice = this.model.getTotalMenuPrice();
+    console.log("Total price: " + totalPrice);
+    let price = document.createElement('div');
+    price.id = "sidebar-total-price";
+    price.className = "text-right col-12";
+    price.innerHTML = totalPrice.toFixed(2) + " SEK";
+    parent.appendChild(price);
+  }
+
 }
