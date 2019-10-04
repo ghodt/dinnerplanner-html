@@ -11,7 +11,7 @@ window.onload = async function () {
   const container = document.getElementsByClassName("page-content")[0];
   const nav = new Navigator(container, model);
 
-  nav.navigate("details");
+  nav.navigate("home");
   //detailsController.renderView(559250);
 
   /**

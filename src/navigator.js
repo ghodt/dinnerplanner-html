@@ -8,12 +8,19 @@ class Navigator {
     this.detailsView = new DetailsView(this.container, this.model);
     this.printoutView = new PrintoutView(this.container, this.model);
     this.sidebarView = new SidebarView(this.container, this.model);
+    this.homeController = new HomeController(this.homeView, this.model, this);
     this.searchController = new SearchController(this.searchView, this.model, this);
     this.sidebarController = new SidebarController(this.sidebarView, this.model, this);
     this.detailsController = new DetailsController(this.detailsView, this.model, this);
   }
 
   navigate(message){
+    if(message == "home"){
+      this.renderHome();
+    }
+    if(message == "start"){
+      this.renderSearch();
+    }
     if(message == "details"){
       this.getDishDetails(559250);
     }
@@ -26,16 +33,20 @@ class Navigator {
     }
   }
 
-  clearView(){
+  clearView() {
     // console.log("cleared view");
     this.container.innerHTML = "";
+  }
+
+  renderHome() {
+    this.homeController.renderView();
   }
 
   async getDishDetails(id) {
     // console.log("getDishDetails");
 
     this.clearView();
-    this.sidebarView.render();
+    //this.sidebarView.render();
     this.sidebarController.renderView();
     await this.detailsController.renderView(id);
   }

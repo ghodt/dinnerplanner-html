@@ -72,7 +72,11 @@ class DetailsView {
     let ingredients_list = document.createElement('ul');
     for(let i = 0; i < dish.extendedIngredients.length; i++) {
       let ing = document.createElement('li');
-      ing.innerHTML = dish.extendedIngredients[i].amount * num_of_guests + " " + dish.extendedIngredients[i].unit + " " + dish.extendedIngredients[i].originalName;
+      let ingredientAmount = dish.extendedIngredients[i].amount * num_of_guests;
+      if(!(ingredientAmount % 1) == 0){
+        ingredientAmount = ingredientAmount.toFixed(2);
+      }
+      ing.innerHTML = ingredientAmount + " " + dish.extendedIngredients[i].unit + " " + dish.extendedIngredients[i].originalName;
       ingredients_list.appendChild(ing);
     }
     detailsIngredients.innerHTML = `
@@ -81,7 +85,7 @@ class DetailsView {
               <span class="text-left" id="ingredients-list">`+ ingredients_list.innerHTML + `</span>
               <div class="">
                 <span class="text-right" id="details-total-price">
-                  SEK `+ dish.pricePerServing * num_of_guests + `
+                  SEK `+ (dish.pricePerServing * num_of_guests).toFixed(2) + `
                 </span>
               </div>
             </div>
@@ -131,7 +135,7 @@ class DetailsView {
   }
 
   async updateIngredients(model) {
-    console.log('updating ingreddejd');
+    // console.log('updating ingreddejd');
     let ingredientContent = this.container.querySelector("#ingredient-content");
     ingredientContent.innerHTML = "";
     const dish = this.dish;
@@ -140,7 +144,11 @@ class DetailsView {
     let ingredients_list = document.createElement('ul');
     for(let i = 0; i < dish.extendedIngredients.length; i++) {
       let ing = document.createElement('li');
-      ing.innerHTML = dish.extendedIngredients[i].amount * num_of_guests + " " + dish.extendedIngredients[i].unit + " " + dish.extendedIngredients[i].originalName;
+      let ingredientAmount = dish.extendedIngredients[i].amount * num_of_guests;
+      if(!(ingredientAmount % 1) == 0){
+        ingredientAmount = ingredientAmount.toFixed(2);
+      }
+      ing.innerHTML = ingredientAmount + " " + dish.extendedIngredients[i].unit + " " + dish.extendedIngredients[i].originalName;
       ingredients_list.appendChild(ing);
     }
     ingredientContent.innerHTML = `
@@ -148,7 +156,7 @@ class DetailsView {
           <span class="text-left" id="ingredients-list">`+ ingredients_list.innerHTML + `</span>
           <div class="">
             <span class="text-right" id="details-total-price">
-              SEK `+ dish.pricePerServing * num_of_guests + `
+              SEK `+ (dish.pricePerServing * num_of_guests).toFixed(2) + `
             </span>
           </div>
           `;

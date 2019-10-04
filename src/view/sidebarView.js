@@ -60,7 +60,7 @@ class SidebarView {
     for(const food of menu){
       let dish = document.createElement('div');
       dish.className = "sidebar-dish";
-      dish.innerHTML = '<span class="sidebar-dish-title">' + food.title + '</span><span class="sidebar-dish-cost">' + food.pricePerServing * guests + '</span>';
+      dish.innerHTML = '<span class="sidebar-dish-title">' + food.title + '</span><span class="sidebar-dish-cost">' + (food.pricePerServing * guests).toFixed(2) + '</span>';
       parent.appendChild(dish);
     }
     let totalPrice = this.model.getTotalMenuPrice();
