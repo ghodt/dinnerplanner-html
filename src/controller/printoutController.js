@@ -1,16 +1,24 @@
 class PrintoutController {
-    constructor(view, model) {
+    constructor(view, model, nav) {
         this.view = view;
         this.model = model;
-
-        // TODO lab 3
+        this.nav = nav;
     }
 
     renderView() {
       this.view.render();
-        // TODO lab 3
-        // reeee
+      this.addEventListeners();
     }
 
-    // TODO Lab 3
+    addEventListeners() {
+      let view = this.view;
+      let model = this.model;
+      let nav = this.nav;
+
+      let backBtn = view.container.querySelector('#go-back-btn');
+      let backListener = function(evt) {
+        nav.navigate("printout-back");
+      }
+      backBtn.addEventListener('click', backListener, false);
+    }
 }

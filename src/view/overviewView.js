@@ -4,7 +4,6 @@ class OverviewView {
         this.model = model;
     }
 
-    // An example of creating HTML procedurally. Think about the pros and cons of this approach.
     render() {
       // get sidebar and header
       const templates = new Templates(this.model);
@@ -12,7 +11,8 @@ class OverviewView {
       const num_of_guests = this.model.getNumberOfGuests();
       // set header
       this.container.insertAdjacentHTML('afterbegin', templates.header);
-
+      let contentDiv = this.container.appendChild(document.createElement('div'));
+      contentDiv.id = "content";
       const content = this.container.querySelector('#content');
       const dinnerOverview = content.appendChild(document.createElement('div'));
       dinnerOverview.classList.add("col-sm-12");
@@ -44,8 +44,7 @@ class OverviewView {
         dish_title.className = "value-main-course-name";
         dish_title.innerHTML = food.title;
         const price = document.createElement('p');
-      //  price.className = ""
-        price.innerHTML = food.pricePerServing * num_of_guests + " SEK";
+        price.innerHTML = (food.pricePerServing * num_of_guests).toFixed(2) + " SEK";
 
         img_div.appendChild(img);
         img_div.appendChild(dish_title);

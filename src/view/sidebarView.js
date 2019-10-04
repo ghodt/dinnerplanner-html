@@ -2,11 +2,12 @@ class SidebarView {
   constructor(container, model) {
     this.container = container;
     this.model = model;
+    this.model.addObserver(this);
     // this.guestsInput = null;
   }
 
   render() {
-    console.log("renderrrr");
+    // console.log("renderrrr");
     var content =  `
     <div class="row content" id="totalRow">
       <div id="sideBarView" class="container col-sm-3">
@@ -38,12 +39,16 @@ class SidebarView {
   }
 
   afterRender() {
-    this.addDishesToSidebar();
-  //this.startBtn = this.container.getElementsByClassName("value-num-guests");
+    // this.update(changeDetails);
   }
 
-  update(payload) {
-    // TODO Lab3
+  update(model, changeDetails) {
+    if(changeDetails == model.getFullMenu) {
+      this.addDishesToSidebar();
+    } else if (changeDetails == model.getNumberOfGuests) {
+      let input = this.container.querySelector('#number-input');
+      input.value = model.getNumberOfGuests();
+    }
   }
 
   addDishesToSidebar() {
@@ -55,7 +60,7 @@ class SidebarView {
     for(const food of menu){
       let dish = document.createElement('div');
       dish.className = "sidebar-dish";
-      dish.innerHTML = '<span class="sidebar-dish-title">' + food.title + '</span><span class="sidebar-dish-cost">' + food.pricePerServing * guests + '</span>';
+      dish.innerHTML = '<span class="sidebar-dish-title">' + food.title + '</span><span class="sidebar-dish-cost">' + (food.pricePerServing * guests).toFixed(2) + '</span>';
       parent.appendChild(dish);
     }
     let totalPrice = this.model.getTotalMenuPrice();
