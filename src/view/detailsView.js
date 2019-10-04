@@ -4,10 +4,12 @@ class DetailsView {
     this.model = model;
     this.model.addObserver(this);
     this.templates = new Templates(this.model, this.container);
+    this.dish;
   }
 
   async render(dishId) {
     const dish = await this.model.getDish(dishId);
+    this.dish = dish;
     console.log(dish);
     const num_of_guests = this.model.getNumberOfGuests();
     // set header and sidebar
@@ -39,13 +41,14 @@ class DetailsView {
     totalRow.appendChild(detailsView);
 
     let detailsRow = document.createElement('div');
+    detailsRow.id = dishId;
     detailsRow.className = "row details-row";
     detailsView.appendChild(detailsRow);
 
     // DETAILS
     let detailsDish = document.createElement('div');
     detailsDish.id = "details-dish";
-    detailsDish.className = "";
+    // detailsDish.className = "";
 
     detailsDish.innerHTML = `<div id="details-dish-name" class="text-left details-header">
               <h1> <span class="value-main-course-name">` + dish.title + `</span></h1>
@@ -73,16 +76,18 @@ class DetailsView {
       ingredients_list.appendChild(ing);
     }
     detailsIngredients.innerHTML = `
-            <h3> Ingredients for <span class="value-num-guests">`+ num_of_guests + `</span> people </h3>
-            <span class="text-left" id="ingredients-list">`+ ingredients_list.innerHTML + `</span>
-            <div class="">
-              <span class="text-right" id="details-total-price">
-                SEK `+ dish.pricePerServing * num_of_guests + `
-              </span>
-              <span class="text-left">
-                <button type="button" name="button" id="details-add-button" class="btn btn-lg btn-primary">Add to menu</button>
-              </span>
+            <div id="ingredient-content">
+              <h3 id="details-ingredients-header"> Ingredients for <span class="value-num-guests">`+ num_of_guests + `</span> people </h3>
+              <span class="text-left" id="ingredients-list">`+ ingredients_list.innerHTML + `</span>
+              <div class="">
+                <span class="text-right" id="details-total-price">
+                  SEK `+ dish.pricePerServing * num_of_guests + `
+                </span>
+              </div>
             </div>
+            <span class="text-left">
+              <button type="button" name="button" id="details-add-button" class="btn btn-lg btn-primary">Add to menu</button>
+            </span>
           `;
     detailsRow.appendChild(detailsIngredients);
     console.log(dish);
@@ -109,25 +114,43 @@ class DetailsView {
     this.afterRender();
   }
 
-  async sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+  // async sleep(ms) {
+  //   return new Promise(resolve => setTimeout(resolve, ms));
+  // }
 
   async afterRender() {
         this.container.removeChild(loader);
-        // await this.sleep(2000);
-        // await this.model.addDishToMenu(559252);
-        // this.model.setNumberOfGuests(6);
-        this.update(this.model, this.model.getFullMenu);
+        // this.update(this.model, this.model.getFullMenu);
   }
 
   update(model, changeDetails) {
-    if(changeDetails == model.getFullMenu) {
-      // this.templates.addDishesToSidebar();
-    } else if (changeDetails == model.getNumberOfGuests) {
-      let input = this.container.querySelector('#number-input');
-      input.value = model.getNumberOfGuests();
+    if (changeDetails == model.getNumberOfGuests) {
+      this.updateIngredients(model);
     }
 
+  }
+
+  async updateIngredients(model) {
+    console.log('updating ingreddejd');
+    let ingredientContent = this.container.querySelector("#ingredient-content");
+    ingredientContent.innerHTML = "";
+    const dish = this.dish;
+
+    let num_of_guests = model.getNumberOfGuests();
+    let ingredients_list = document.createElement('ul');
+    for(let i = 0; i < dish.extendedIngredients.length; i++) {
+      let ing = document.createElement('li');
+      ing.innerHTML = dish.extendedIngredients[i].amount * num_of_guests + " " + dish.extendedIngredients[i].unit + " " + dish.extendedIngredients[i].originalName;
+      ingredients_list.appendChild(ing);
+    }
+    ingredientContent.innerHTML = `
+          <h3 id="details-ingredients-header"> Ingredients for <span class="value-num-guests">`+ num_of_guests + `</span> people </h3>
+          <span class="text-left" id="ingredients-list">`+ ingredients_list.innerHTML + `</span>
+          <div class="">
+            <span class="text-right" id="details-total-price">
+              SEK `+ dish.pricePerServing * num_of_guests + `
+            </span>
+          </div>
+          `;
   }
 }

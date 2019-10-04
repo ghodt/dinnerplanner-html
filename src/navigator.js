@@ -20,15 +20,19 @@ class Navigator {
     if(message == "details-back"){
       this.renderSearch();
     }
+    if(message == "confirm-dinner"){
+      console.log("Render overview");
+      // this.renderOverview();
+    }
   }
 
   clearView(){
-    console.log("cleared view");
+    // console.log("cleared view");
     this.container.innerHTML = "";
   }
 
   async getDishDetails(id) {
-    console.log("getDishDetails");
+    // console.log("getDishDetails");
 
     this.clearView();
     this.sidebarView.render();

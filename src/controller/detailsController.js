@@ -8,18 +8,22 @@ class DetailsController {
     }
 
     addEventListeners(dishId) {
+      let view = this.view;
       let model = this.model;
       let nav = this.nav;
-      let backBtn = this.view.container.querySelector("#go-back-to-searchBtn");
+
+      let backBtn = view.container.querySelector("#go-back-to-searchBtn");
       let backListener = function(evt){
-        console.log("backkkkk");
+        // console.log("backkkkk");
         nav.navigate("details-back");
       };
       backBtn.addEventListener("click", backListener, false);
 
       let addBtn = this.view.container.querySelector("#details-add-button");
       let addListener = function(evt){
+        console.log("add dish to menu");
         model.addDishToMenu(dishId);
+        // view.addDishesToSidebar();
       };
       addBtn.addEventListener("click", addListener, false);
     }
