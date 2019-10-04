@@ -17,16 +17,16 @@ class SearchView {
     loader.innerHTML = '<span class="sr-only">Loading...</span>';
     this.container.appendChild(loader);
 
-    let content = document.createElement('div');
-    content.id = "content";
-    content.className = "container row col-sm-12";
-
-    let sideBar = document.createElement('div');
-    sideBar.id = "sideBarView";
-    sideBar.className = "container col-sm-3";
-    sideBar.innerHTML = this.templates.sidebar;
+    // let content = document.createElement('div');
+    // content.id = "content";
+    // content.className = "container row col-sm-12";
+    let content = this.container.querySelector('#totalRow');
+    // let sideBar = document.createElement('div');
+    // sideBar.id = "sideBarView";
+    // sideBar.className = "container col-sm-3";
+    // sideBar.innerHTML = this.templates.sidebar;
   //  sideBar.querySelector('#sidebar-total-price').innerHTML = 'SEK <span class="value-total-price">' + this.model.getTotalMenuPrice();
-    content.appendChild(sideBar);
+  //  content.appendChild(sideBar);
     this.container.appendChild(content);
     this.templates.addDishesToSidebar();
 
