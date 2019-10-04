@@ -111,7 +111,8 @@ p {
 
 #sideBarView {
   border-width: 2px;
-  border-style: solid;
+  border-bottom-style: solid;
+  border-right-style: solid;
   border-color: black;
   height: 100%;
   padding: 0px;
@@ -279,6 +280,7 @@ p {
   border-width: 2px;
   background-color: #FFE599;
   border-style: solid;
+  border-top-style: none;
   border-color: black;
   padding: 0.7em;
   /* width: 50%; */
@@ -450,7 +452,8 @@ p {
 }
 .container {
   padding: 0px;
-  margin: 0px;
+  /* margin: 0px; */
+  width: 100%;
 }
 
 

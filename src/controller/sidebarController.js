@@ -17,15 +17,14 @@ class SidebarController {
       let confirmListener = function(evt){
         nav.navigate("confirm-dinner");
         view.update(model.getFullMenu);
-      }
+      };
       confirmButton.addEventListener('click', confirmListener, false);
 
       let guestInput = view.container.querySelector('#number-input');
       let guestInputListener = function(evt){
-        // console.log("New guest value: " + guestInput.value);
         model.setNumberOfGuests(guestInput.value);
         view.update(model.getNumberOfGuests);
-      }
+      };
       guestInput.addEventListener('click', guestInputListener, false);
     }
 

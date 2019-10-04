@@ -28,24 +28,24 @@ class Templates {
       </div>`;
   }
 
-  addDishesToSidebar() {
-    const menu = this.model.getFullMenu();
-    const guests = this.model.getNumberOfGuests();
-    let parent = this.container.querySelector('#sidebar-selected-dishes');
-    parent.innerHTML = "";
-
-    for(const food of menu){
-      let dish = document.createElement('div');
-      dish.className = "sidebar-dish";
-      dish.innerHTML = '<span class="sidebar-dish-title">' + food.title + '</span><span class="sidebar-dish-cost">' + food.pricePerServing * guests + '</span>';
-      parent.appendChild(dish);
-    }
-    let totalPrice = this.model.getTotalMenuPrice();
-    console.log("Total price: " + totalPrice);
-    let price = document.createElement('div');
-    price.id = "sidebar-total-price";
-    price.className = "text-right col-12";
-    price.innerHTML = totalPrice.toFixed(2) + " SEK";
-    parent.appendChild(price);
-  }
+  // addDishesToSidebar() {
+  //   const menu = this.model.getFullMenu();
+  //   const guests = this.model.getNumberOfGuests();
+  //   let parent = this.container.querySelector('#sidebar-selected-dishes');
+  //   parent.innerHTML = "";
+  //
+  //   for(const food of menu){
+  //     let dish = document.createElement('div');
+  //     dish.className = "sidebar-dish";
+  //     dish.innerHTML = '<span class="sidebar-dish-title">' + food.title + '</span><span class="sidebar-dish-cost">' + food.pricePerServing * guests + '</span>';
+  //     parent.appendChild(dish);
+  //   }
+  //   let totalPrice = this.model.getTotalMenuPrice();
+  //   console.log("Total price: " + totalPrice);
+  //   let price = document.createElement('div');
+  //   price.id = "sidebar-total-price";
+  //   price.className = "text-right col-12";
+  //   price.innerHTML = totalPrice.toFixed(2) + " SEK";
+  //   parent.appendChild(price);
+  // }
 }

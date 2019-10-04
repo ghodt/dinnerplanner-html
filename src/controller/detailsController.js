@@ -1,7 +1,5 @@
 class DetailsController {
     constructor(view, model, nav) {
-      console.log("created details controller");
-
         this.view = view;
         this.model = model;
         this.nav = nav;
@@ -14,7 +12,6 @@ class DetailsController {
 
       let backBtn = view.container.querySelector("#go-back-to-searchBtn");
       let backListener = function(evt){
-        // console.log("backkkkk");
         nav.navigate("details-back");
       };
       backBtn.addEventListener("click", backListener, false);

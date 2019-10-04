@@ -3,11 +3,9 @@ class SidebarView {
     this.container = container;
     this.model = model;
     this.model.addObserver(this);
-    // this.guestsInput = null;
   }
 
   render() {
-    // console.log("renderrrr");
     var content =  `
     <div class="row content" id="totalRow">
       <div id="sideBarView" class="container col-sm-3">
@@ -39,7 +37,7 @@ class SidebarView {
   }
 
   afterRender() {
-    // this.update(changeDetails);
+    this.addDishesToSidebar();
   }
 
   update(model, changeDetails) {
@@ -55,21 +53,23 @@ class SidebarView {
     const menu = this.model.getFullMenu();
     const guests = this.model.getNumberOfGuests();
     let parent = this.container.querySelector('#sidebar-selected-dishes');
-    parent.innerHTML = "";
-
-    for(const food of menu){
-      let dish = document.createElement('div');
-      dish.className = "sidebar-dish";
-      dish.innerHTML = '<span class="sidebar-dish-title">' + food.title + '</span><span class="sidebar-dish-cost">' + (food.pricePerServing * guests).toFixed(2) + '</span>';
-      parent.appendChild(dish);
+    if(parent != 'null'){
+      parent.innerHTML = "";
+      for(const food of menu){
+        let dish = document.createElement('div');
+        console.log(food.pricePerServing * guests);
+        let dishCost = (food.pricePerServing * guests).toFixed(2);
+        dish.className = "sidebar-dish";
+        dish.innerHTML = '<span class="sidebar-dish-title">' + food.title + '</span><span class="sidebar-dish-cost">' + dishCost + '</span>';
+        parent.appendChild(dish);
+      }
+      let totalPrice = this.model.getTotalMenuPrice();
+      let price = document.createElement('div');
+      price.id = "sidebar-total-price";
+      price.className = "text-right col-12";
+      price.innerHTML = totalPrice.toFixed(2) + " SEK";
+      parent.appendChild(price);
     }
-    let totalPrice = this.model.getTotalMenuPrice();
-    console.log("Total price: " + totalPrice);
-    let price = document.createElement('div');
-    price.id = "sidebar-total-price";
-    price.className = "text-right col-12";
-    price.innerHTML = totalPrice.toFixed(2) + " SEK";
-    parent.appendChild(price);
   }
 
 }

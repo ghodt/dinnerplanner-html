@@ -73,7 +73,7 @@ class DetailsView {
     for(let i = 0; i < dish.extendedIngredients.length; i++) {
       let ing = document.createElement('li');
       let ingredientAmount = dish.extendedIngredients[i].amount * num_of_guests;
-      if(!(ingredientAmount % 1) == 0){
+      if((ingredientAmount % 1) != 0){
         ingredientAmount = ingredientAmount.toFixed(2);
       }
       ing.innerHTML = ingredientAmount + " " + dish.extendedIngredients[i].unit + " " + dish.extendedIngredients[i].originalName;

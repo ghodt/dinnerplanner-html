@@ -25,7 +25,7 @@ class OverviewController {
       let printListener = function(evt){
         // console.log("go to print");
         nav.navigate("print");
-      }
+      };
       printBtn.addEventListener('click', printListener, false);
     }
 }

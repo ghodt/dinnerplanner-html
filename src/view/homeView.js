@@ -1,7 +1,6 @@
 class HomeView {
   constructor(container) {
     this.container = container;
-    this.startBtn = null;
   }
 
   // An example of creating HTML declaratively. Think about the pros and cons of this approach.
@@ -25,7 +24,7 @@ class HomeView {
   }
 
   afterRender() {
-    this.startBtn = this.container.getElementsByClassName("#startBtn");
+    //this.startBtn = this.container.getElementsByClassName("#startBtn");
   }
 
   update(payload) {
