@@ -8,6 +8,7 @@ class SearchView {
   }
 
   async render() {
+    console.log("render search view");
     this.container.insertAdjacentHTML('afterbegin', this.templates.header);
 
     const loader = document.createElement('div');
@@ -17,16 +18,7 @@ class SearchView {
     loader.innerHTML = '<span class="sr-only">Loading...</span>';
     this.container.appendChild(loader);
 
-    // let content = document.createElement('div');
-    // content.id = "content";
-    // content.className = "container row col-sm-12";
     let content = this.container.querySelector('#totalRow');
-    // let sideBar = document.createElement('div');
-    // sideBar.id = "sideBarView";
-    // sideBar.className = "container col-sm-3";
-    // sideBar.innerHTML = this.templates.sidebar;
-  //  sideBar.querySelector('#sidebar-total-price').innerHTML = 'SEK <span class="value-total-price">' + this.model.getTotalMenuPrice();
-  //  content.appendChild(sideBar);
     this.container.appendChild(content);
     this.templates.addDishesToSidebar();
 
@@ -58,7 +50,7 @@ class SearchView {
     dishItems.id = "dishItems";
     dishItems.className = "col row";
     this.model.setSearchInput(cookieValue);
-    await this.addDishes(dishItems);
+    //await this.addDishes(dishItems);
      dishView.appendChild(searchbar);
      dishView.appendChild(dishItems);
 
@@ -117,11 +109,14 @@ class SearchView {
     }
     if(changeDetails == model.getSearchInput) {
       console.log("seeearch");
+
       let dishItems = this.container.querySelector('#dishItems');
-      console.log(this.container);
+
       dishItems.innerHTML = "";
       // append loader
-      await this.addDishes(dishItems);
+    //  await this.addDishes(dishItems);
+
+
 
 
     }
