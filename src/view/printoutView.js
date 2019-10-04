@@ -11,6 +11,8 @@ class PrintoutView {
     // set header
     this.container.insertAdjacentHTML('afterbegin', templates.header);
 
+    let contentDiv = this.container.appendChild(document.createElement('div'));
+    contentDiv.id = "content";
     const content = this.container.querySelector('#content');
     const dinnerOverview = content.appendChild(document.createElement('div'));
     dinnerOverview.classList.add("col-sm-12");
