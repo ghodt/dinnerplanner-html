@@ -10,7 +10,9 @@ class SearchController {
     async renderView() {
       await this.view.render();
       this.addEventListeners();
-      this.addDishListeners(dishItems, "", "All");
+      let cookieStringValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchString\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+      let cookieTypeValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchType\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+      this.addDishListeners(dishItems, cookieStringValue, cookieTypeValue);
     }
 
 
@@ -18,20 +20,23 @@ class SearchController {
       console.log("addEventListeners");
       let searchBtn = this.view.container.querySelector('#submit-btn');
       let searchListener = async function(event) {
-        console.log("clicked!!!");
-
+        //console.log("clicked!!!");
         let input = this.view.container.querySelector('#search-input').value;
         let category = this.view.container.querySelector('#drop-down').value;
         if(event.target.id == "submit-btn") {
+          document.cookie = 'searchString=' + input;
+          document.cookie = 'searchType=' + category;
           this.model.setSearchInput(input, category, true);
         }
-
         let dishItems = this.view.container.querySelector('#dishItems');
         dishItems.innerHTML = "";
         this.addDishListeners(dishItems, input, category);
       }.bind(this);
 
       searchBtn.addEventListener('click', searchListener, false);
+
+      // let searchInput = this.view.container.querySelector('#search-input');
+      // searchInput.addEventListener('submit', searchListener, false);
 
       let confirmDinnerBtn = this.view.container.querySelector('#sidebar-button');
       let confirmListener = function(event) {
@@ -46,7 +51,7 @@ class SearchController {
         console.log("dishId: " + dishId);
         this.nav.renderDetails(dishId);
       }.bind(this);
-    //  document.cookie='searchString=chocolate;bla=ble';
+      //document.cookie='searchString=chocolate;bla=ble';
       let dishes = await this.model.getAllDishes(input, category);
       // console.log(dishItems);
 
@@ -69,9 +74,4 @@ class SearchController {
         dish.addEventListener('click', dishListener, false);
       }
     }
-
-
-
-
-
 }
