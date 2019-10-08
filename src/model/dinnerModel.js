@@ -55,7 +55,7 @@ class DinnerModel {
 
   //Returns the dish that is on the menu for selected type
   getSelectedDish(type) {
-    return this.dinnerMenu.find(dish => dish.type == type);
+    return this.dinnerMenu.find(dish => dish.dishTypes.includes(type));
   }
 
   //Returns all the dishes on the menu.
@@ -85,8 +85,21 @@ class DinnerModel {
     if(newDish == undefined){
       return;
     }
+    let types = newDish.dishTypes;
+    const menu = this.dinnerMenu;
+    // Only check the first five types
+    if (types.length > 5) {
+      types = types.slice(0, 5);
+      console.log(types);
+    }
+    for(const type of types){
+      let oldDish = this.getSelectedDish(type);
+      if(oldDish != undefined){
+        this.removeDishFromMenu(oldDish);
+      }
+    }
     const len = this.dinnerMenu.length;
-    this.dinnerMenu.push(newDish);
+    menu.push(newDish);
     this.assert((len + 1) == this.dinnerMenu.length);
     this.notifyObservers(this.getFullMenu);
   }
