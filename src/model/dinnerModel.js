@@ -93,10 +93,12 @@ class DinnerModel {
 
   //Removes dish from menu
   removeDishFromMenu(id) {
+
     if(this.dinnerMenu.length == 0){
       return;
     }
-    this.dinnerMenu.splice(this.dinnerMenu.indexOf(this.dinnerMenu.find(dish => dish.id == dish)), 1);
+    console.log(this.getFullMenu());
+    this.dinnerMenu.splice(this.dinnerMenu.indexOf(this.dinnerMenu.find(dish => dish.id == id)), 1);
     this.notifyObservers(this.getFullMenu);
   }
 

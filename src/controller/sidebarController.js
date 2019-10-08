@@ -10,20 +10,30 @@ class SidebarController {
       this.addEventListeners();
     }
     addEventListeners(){
-      let view = this.view;
-      let model = this.model;
-      let nav = this.nav;
+    //  console.log(vad);
+      console.log("add addEventListener for sidebar");
 
-      let confirmButton = view.container.querySelector('#sidebar-button');
+      let confirmButton = this.view.container.querySelector('#sidebar-button');
       let confirmListener = function(evt){
-        nav.navigate("confirm-dinner");
-      };
+        this.nav.navigate("confirm-dinner");
+      }.bind(this);
       confirmButton.addEventListener('click', confirmListener, false);
 
-      let guestInput = view.container.querySelector('#number-input');
+      let guestInput = this.view.container.querySelector('#number-input');
       let guestInputListener = function(evt){
-        model.setNumberOfGuests(guestInput.value);
-      };
+        this.model.setNumberOfGuests(guestInput.value);
+      }.bind(this);
       guestInput.addEventListener('click', guestInputListener, false);
+
+      let remove = this.view.container.querySelector('#sidebar-selected-dishes');
+
+      let removeListener = function(evt){
+        if(evt.target.className.includes("removeBtn")) {
+          let id = evt.target.parentElement.parentElement.id;
+          console.log('will remove this: ' + id);
+          this.model.removeDishFromMenu(id);
+        }
+      }.bind(this);
+      remove.addEventListener('click', removeListener, false);
     }
 }

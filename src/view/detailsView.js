@@ -10,7 +10,7 @@ class DetailsView {
   async render(dishId) {
     const dish = await this.model.getDish(dishId);
     this.dish = dish;
-    console.log(dish);
+  //  console.log(dish);
     const num_of_guests = this.model.getNumberOfGuests();
     // set header and sidebar
     this.container.insertAdjacentHTML('afterbegin', this.templates.header);

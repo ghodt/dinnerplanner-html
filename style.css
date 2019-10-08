@@ -166,6 +166,7 @@ p {
 .sidebar-dish {
   margin: 0.5em;
   padding: 0.4em;
+  height: 70px;
   border-width: 1.5px;
   border-style: solid;
   border-color: black;

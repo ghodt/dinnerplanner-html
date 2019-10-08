@@ -17,9 +17,10 @@ class DetailsController {
       backBtn.addEventListener("click", backListener, false);
 
       let addBtn = this.view.container.querySelector("#details-add-button");
-      let addListener = function(evt){
-        model.addDishToMenu(dishId);
-      };
+      let addListener = async function(evt){
+        await model.addDishToMenu(dishId);
+        //this.nav.sidebarController.addEventListeners();
+      }.bind(this);
       addBtn.addEventListener("click", addListener, false);
     }
 

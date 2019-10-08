@@ -20,7 +20,7 @@ class SearchController {
       console.log("addEventListeners");
       let searchBtn = this.view.container.querySelector('#submit-btn');
       let searchListener = async function(event) {
-        //console.log("clicked!!!");
+
         let input = this.view.container.querySelector('#search-input').value;
         let category = this.view.container.querySelector('#drop-down').value;
         if(event.target.id == "submit-btn") {
@@ -48,7 +48,6 @@ class SearchController {
     async addDishListeners(dishItems, input, category) {
       let dishListener = function(event) {
         let dishId = parseInt(event.target.parentElement.parentElement.id);
-        console.log("dishId: " + dishId);
         this.nav.renderDetails(dishId);
       }.bind(this);
       //document.cookie='searchString=chocolate;bla=ble';

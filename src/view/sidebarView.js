@@ -52,20 +52,22 @@ class SidebarView {
   }
 
   addDishesToSidebar(model) {
-    console.log("add dishes");
+    console.log("addDishesToSidebar");
     const menu = model.getFullMenu();
     console.log(menu);
     const guests = model.getNumberOfGuests();
     let parent = this.container.querySelector('#sidebar-selected-dishes');
     parent.innerHTML = "";
     for(const food of menu){
-      console.log(food);
+    //  console.log(food);
       let dish = document.createElement('div');
       let dishCost = (food.pricePerServing * guests).toFixed(2);
       dish.className = "sidebar-dish";
-      dish.innerHTML = '<span class="sidebar-dish-title">' + food.title + '</span><span class="sidebar-dish-cost">' + food.pricePerServing * guests + '</span>';
+      console.log(food.title + " " + food.id);
+      dish.id = food.id;
+      dish.innerHTML = '<span class="sidebar-dish-title">' + food.title + '</span><span class="sidebar-dish-cost">' + food.pricePerServing * guests + '<button class="removeBtn btn btn-sm btn-primary">X</button></span>';
       parent.appendChild(dish);
-      console.log(parent);
+    //  console.log(parent);
     }
     let p = document.createElement('p')
     p.innerHTML = "reeeeeee";
