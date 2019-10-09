@@ -53,6 +53,15 @@ class Navigator {
   renderHome() {
     let guestCookie = document.cookie.replace(/(?:(?:^|.*;\s*)guests\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     this.model.setNumberOfGuests(guestCookie);
+    let menu = window.localStorage.getItem('menu');
+    if(menu != ""){
+      menu = JSON.parse(menu);
+      console.log(menu);
+      for(const dish of menu){
+        console.log(dish);
+        this.model.addDishToMenu(dish.id);
+      }
+    }
     this.homeController.renderView();
   }
 
@@ -60,10 +69,6 @@ class Navigator {
     this.clearView();
     this.sidebarController.renderView();
     await this.detailsController.renderView(id);
-  }
-
-  renderSidebar(){
-    this.sidebarController.renderView();
   }
 
   renderSearch(){

@@ -45,8 +45,6 @@ class SidebarView {
       this.addDishesToSidebar(model);
     }
     if(changeDetails == model.getNumberOfGuests) {
-      // let input = this.container.querySelector('#number-input');
-      // input.value = model.getNumberOfGuests();
       this.addDishesToSidebar(model);
     }
   }
@@ -54,9 +52,7 @@ class SidebarView {
   addDishesToSidebar(model) {
     console.log("addDishesToSidebar");
     const menu = model.getFullMenu();
-    console.log(JSON.stringify(menu));
-    document.cookie = "menu=" + JSON.stringify(menu);
-    console.log(menu);
+
     const guests = model.getNumberOfGuests();
     let parent = this.container.querySelector('#sidebar-selected-dishes');
     parent.innerHTML = "";
@@ -64,14 +60,12 @@ class SidebarView {
       let dish = document.createElement('div');
       let dishCost = (food.pricePerServing * guests).toFixed(2);
       dish.className = "sidebar-dish";
-      console.log(food.title + " " + food.id);
       dish.id = food.id;
       dish.innerHTML = '<span class="sidebar-dish-title">' + food.title + '</span><span class="sidebar-dish-cost">' + food.pricePerServing * guests + '<button class="removeBtn btn btn-sm btn-primary">X</button></span>';
       parent.appendChild(dish);
     }
     let p = document.createElement('p')
     p.innerHTML = "reeeeeee";
-    // parent.appendChild(p);
     let totalPrice = this.model.getTotalMenuPrice();
     let price = document.createElement('div');
     price.id = "sidebar-total-price";
