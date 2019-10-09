@@ -35,9 +35,6 @@ class SearchController {
 
       searchBtn.addEventListener('click', searchListener, false);
 
-      // let searchInput = this.view.container.querySelector('#search-input');
-      // searchInput.addEventListener('submit', searchListener, false);
-
       let confirmDinnerBtn = this.view.container.querySelector('#sidebar-button');
       let confirmListener = function(event) {
         console.log("confirm");
@@ -48,11 +45,9 @@ class SearchController {
     async addDishListeners(dishItems, input, category) {
       let dishListener = function(event) {
         let dishId = parseInt(event.target.parentElement.parentElement.id);
-        this.nav.renderDetails(dishId);
+        this.nav.navigate(dishId);
       }.bind(this);
-      //document.cookie='searchString=chocolate;bla=ble';
       let dishes = await this.model.getAllDishes(input, category);
-      // console.log(dishItems);
 
       for(let i = 0; i < dishes.length; i++) {
         let dish = document.createElement('div');

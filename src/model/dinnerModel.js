@@ -118,14 +118,16 @@ class DinnerModel {
   //Returns all dishes of specific type (i.e. "starter", "main dish" or "dessert").
   //query argument, text, if passed only returns dishes that contain the query in name or one of the ingredients.
   //if you don't pass any query, all the dishes will be returned
-  async getAllDishes(type, query) {
+  async getAllDishes(query, type) {
     if(type == undefined){
       type = "";
     }
     if(query == undefined){
       query = "";
     }
-    let dishes = await fetch(this.endpoint + "search?type=" + type + "&query=" + query, {
+    let newType = type.replace("-", " ");
+    console.log("Type: " + newType + ", query: " + query);
+    let dishes = await fetch(this.endpoint + "search?type=" + newType + "&query=" + query, {
         headers: this.authHeader
       })
       .then(response => response.json())

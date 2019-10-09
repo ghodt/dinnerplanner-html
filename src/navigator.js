@@ -25,10 +25,6 @@ class Navigator {
         this.renderHome();
         break;
 
-      case "details":
-        this.renderDetails(559250);
-        break;
-
       case "start":
       case "details-back":
       case "overview-back":
@@ -55,6 +51,8 @@ class Navigator {
   }
 
   renderHome() {
+    let guestCookie = document.cookie.replace(/(?:(?:^|.*;\s*)guests\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    this.model.setNumberOfGuests(guestCookie);
     this.homeController.renderView();
   }
 

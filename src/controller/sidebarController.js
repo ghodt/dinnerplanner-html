@@ -6,6 +6,7 @@ class SidebarController {
     }
 
     renderView() {
+      
       this.view.render();
       this.addEventListeners();
     }
@@ -22,6 +23,7 @@ class SidebarController {
       let guestInput = this.view.container.querySelector('#number-input');
       let guestInputListener = function(evt){
         this.model.setNumberOfGuests(guestInput.value);
+        document.cookie = "guests=" + guestInput.value;
       }.bind(this);
       guestInput.addEventListener('click', guestInputListener, false);
 
