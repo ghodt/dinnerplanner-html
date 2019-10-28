@@ -10,9 +10,9 @@ class SearchController {
     async renderView() {
       await this.view.render();
       this.addEventListeners();
-      let cookieStringValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchString\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-      let cookieTypeValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchType\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-      this.addDishListeners(dishItems, cookieStringValue, cookieTypeValue);
+    //  let cookieStringValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchString\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    //  let cookieTypeValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchType\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+      this.addDishListeners(dishItems);
     }
 
 
@@ -24,8 +24,10 @@ class SearchController {
         let input = this.view.container.querySelector('#search-input').value;
         let category = this.view.container.querySelector('#drop-down').value;
         if(event.target.id == "submit-btn") {
-          document.cookie = 'searchString=' + input;
-          document.cookie = 'searchType=' + category;
+          window.localStorage.removeItem('query');
+          window.localStorage.setItem('query', input);
+          window.localStorage.removeItem('type');
+          window.localStorage.setItem('type', category);
           this.model.setSearchInput(input, category, true);
         }
         let dishItems = this.view.container.querySelector('#dishItems');
@@ -43,29 +45,23 @@ class SearchController {
     }
 
     async addDishListeners(dishItems, input, category) {
+      console.log("addDishListeners")
       let dishListener = function(event) {
-        let dishId = parseInt(event.target.parentElement.parentElement.id);
-        this.nav.navigate(dishId);
+        let target = null;
+        console.log(event.target.parentNode.parentNode.className);
+        if(event.target.parentNode.parentNode.className == "dish") {
+          target = event.target.parentNode.parentNode;
+        }
+        else if(event.target.parentNode.className.includes("dish")) {
+          target = event.target.parentNode;
+        }
+
+        let dishId = parseInt(target.id);
+        if(dishId != null) {
+          this.nav.navigate(dishId);
+        }
       }.bind(this);
-      let dishes = await this.model.getAllDishes(input, category);
-
-      for(let i = 0; i < dishes.length; i++) {
-        let dish = document.createElement('div');
-        dish.className = "dish";
-        dish.id = dishes[i].id;
-        let dishContent = document.createElement('div');
-        let img = document.createElement('img');
-        img.src = "https://spoonacular.com/recipeImages/" + dishes[i].image;
-        dishContent.id = "result-images";
-        dishContent.appendChild(img);
-        dish.appendChild(dishContent);
-
-        let title = document.createElement('span');
-        title.className = "value-main-course-name";
-        title.innerHTML = dishes[i].title;
-        dish.appendChild(title)
-        dishItems.appendChild(dish);
-        dish.addEventListener('click', dishListener, false);
-      }
+        let dishDiv = this.view.container.querySelector('#dishItems');
+        dishDiv.addEventListener('click', dishListener, false);
     }
 }

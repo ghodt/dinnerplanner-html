@@ -46,6 +46,8 @@ class DinnerModel {
     if(num >= 0){
       this.numberOfGuests = num;
     }
+    window.localStorage.removeItem('numberOfGuests');
+    window.localStorage.setItem('numberOfGuests', num);
     this.notifyObservers(this.getNumberOfGuests);
   }
 
@@ -90,7 +92,7 @@ class DinnerModel {
     // Only check the first five types
     if (types.length > 5) {
       types = types.slice(0, 5);
-      console.log(types);
+    //  console.log(types);
     }
     for(const type of types){
       let oldDish = this.getSelectedDish(type);
@@ -102,7 +104,7 @@ class DinnerModel {
     menu.push(newDish);
     this.assert((len + 1) == this.dinnerMenu.length);
     this.notifyObservers(this.getFullMenu);
-    console.log(JSON.stringify(menu));
+  //  console.log(JSON.stringify(menu));
     let idArray = [];
     window.localStorage.removeItem('menu');
     window.localStorage.setItem('menu', JSON.stringify(menu));
@@ -132,7 +134,7 @@ class DinnerModel {
       query = "";
     }
     let newType = type.replace("-", " ");
-    console.log("Type: " + newType + ", query: " + query);
+  //  console.log("Type: " + newType + ", query: " + query);
     let dishes = await fetch(this.endpoint + "search?type=" + newType + "&query=" + query, {
         headers: this.authHeader
       })

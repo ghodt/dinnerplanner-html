@@ -51,14 +51,14 @@ class Navigator {
   }
 
   renderHome() {
-    let guestCookie = document.cookie.replace(/(?:(?:^|.*;\s*)guests\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    this.model.setNumberOfGuests(guestCookie);
+    let numberOfGuests = window.localStorage.getItem('numberOfGuests');
+    if(numberOfGuests != null) {
+      this.model.setNumberOfGuests(numberOfGuests);
+    }
     let menu = window.localStorage.getItem('menu');
-    if(menu != ""){
+    if(menu != null){
       menu = JSON.parse(menu);
-      console.log(menu);
       for(const dish of menu){
-        console.log(dish);
         this.model.addDishToMenu(dish.id);
       }
     }

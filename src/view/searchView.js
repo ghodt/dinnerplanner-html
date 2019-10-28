@@ -27,14 +27,22 @@ class SearchView {
 
     let searchbar = document.createElement('div');
     searchbar.id = "search-bar";
-    // document.cookie = 'searchString=chocolate;searchType=Dessert';
-    let cookieStringValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchString\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    let cookieTypeValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchType\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+
+    let query = window.localStorage.getItem('query');
+    let type = window.localStorage.getItem('type');
+    if(query == null) {
+      query = "";
+    }
+    if(type == null) {
+      type = "all";
+    }
+  //  let cookieStringValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchString\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  //  let cookieTypeValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchType\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
     let searchbarHTML = `<h2 id="find-dish">Find a dish</h2>
     <form class="" action="" method="post">
-      <input  onkeydown="return event.key != 'Enter';" id="search-input" type="text" name="search-string" value="` + cookieStringValue + `">
-      <select id="drop-down" name="dish-type" value="` + cookieTypeValue + `">
+      <input  onkeydown="return event.key != 'Enter';" id="search-input" type="text" name="search-string" value="` + query + `">
+      <select id="drop-down" name="dish-type" value="` + type + `">
         <option value="all">All</option>
         <option value="main-course">Main course</option>
         <option value="side-dish">Side dish</option>
@@ -50,12 +58,12 @@ class SearchView {
     let dishItems = document.createElement('div');
     dishItems.id = "dishItems";
     dishItems.className = "col row";
-    this.model.setSearchInput(cookieStringValue);
+    this.model.setSearchInput(query, type, false);
     dishView.appendChild(searchbar);
     dishView.appendChild(dishItems);
     let dropDown = this.container.querySelector('#drop-down');
-    dropDown.value = cookieTypeValue;
-
+    dropDown.value = type;
+    this.addDishes(dishItems);
     await this.afterRender();
   }
 
@@ -73,11 +81,10 @@ class SearchView {
   }
 
   async addDishes(dishItems) {
-    console.log("in addDishes");
+    console.log("addDishes");
     let searchInput = this.model.getSearchInput().split("  ");
-    console.log("type: " + searchInput[1]);
-    console.log("query: " + searchInput[0]);
-    document.cookie='searchString='+ searchInput[0] + ';searchType='+ searchInput[1];
+    console.log(searchInput);
+
     let dishes = await this.model.getAllDishes(searchInput[1], searchInput[0]);
 
     for(let i = 0; i < dishes.length; i++) {
