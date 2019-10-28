@@ -32,6 +32,10 @@ class DinnerModel {
     }
 
     this.searchInput = input + "  " + category;
+    window.localStorage.removeItem('query');
+    window.localStorage.setItem('query', input);
+    window.localStorage.removeItem('type');
+    window.localStorage.setItem('type', category);
     if(clicked) {
       await this.notifyObservers(this.getSearchInput);
     }

@@ -10,8 +10,6 @@ class SearchController {
     async renderView() {
       await this.view.render();
       this.addEventListeners();
-    //  let cookieStringValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchString\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    //  let cookieTypeValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchType\s*\=\s*([^;]*).*$)|^.*$/, "$1");
       this.addDishListeners(dishItems);
     }
 
@@ -24,10 +22,6 @@ class SearchController {
         let input = this.view.container.querySelector('#search-input').value;
         let category = this.view.container.querySelector('#drop-down').value;
         if(event.target.id == "submit-btn") {
-          window.localStorage.removeItem('query');
-          window.localStorage.setItem('query', input);
-          window.localStorage.removeItem('type');
-          window.localStorage.setItem('type', category);
           this.model.setSearchInput(input, category, true);
         }
         let dishItems = this.view.container.querySelector('#dishItems');
@@ -55,7 +49,6 @@ class SearchController {
         else if(event.target.parentNode.className.includes("dish")) {
           target = event.target.parentNode;
         }
-
         let dishId = parseInt(target.id);
         if(dishId != null) {
           this.nav.navigate(dishId);

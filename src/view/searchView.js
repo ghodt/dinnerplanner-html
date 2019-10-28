@@ -36,8 +36,6 @@ class SearchView {
     if(type == null) {
       type = "all";
     }
-  //  let cookieStringValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchString\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-  //  let cookieTypeValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchType\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
     let searchbarHTML = `<h2 id="find-dish">Find a dish</h2>
     <form class="" action="" method="post">
@@ -73,18 +71,16 @@ class SearchView {
   }
 
   async update(model, changeDetails) {
+
     if(changeDetails == model.getSearchInput) {
-      console.log("seeearch");
       let dishItems = this.container.querySelector('#dishItems');
       dishItems.innerHTML = "";
+      await this.addDishes(dishItems);
     }
   }
 
   async addDishes(dishItems) {
-    console.log("addDishes");
     let searchInput = this.model.getSearchInput().split("  ");
-    console.log(searchInput);
-
     let dishes = await this.model.getAllDishes(searchInput[1], searchInput[0]);
 
     for(let i = 0; i < dishes.length; i++) {
@@ -102,7 +98,6 @@ class SearchView {
       title.className = "value-main-course-name";
       title.innerHTML = dishes[i].title;
       dish.appendChild(title)
-
       dishItems.appendChild(dish);
     }
   }
