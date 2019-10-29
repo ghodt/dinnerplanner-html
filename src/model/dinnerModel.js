@@ -102,11 +102,8 @@ class DinnerModel {
     menu.push(newDish);
     this.assert((len + 1) == this.dinnerMenu.length);
     this.notifyObservers(this.getFullMenu);
-    console.log(JSON.stringify(menu));
-    let idArray = [];
     window.localStorage.removeItem('menu');
     window.localStorage.setItem('menu', JSON.stringify(menu));
-    // console.log(window.localStorage.getItem('menu'));
   }
 
   //Removes dish from menu
@@ -114,7 +111,6 @@ class DinnerModel {
     if(this.dinnerMenu.length == 0){
       return;
     }
-    // console.log(this.getFullMenu());
     this.dinnerMenu.splice(this.dinnerMenu.indexOf(this.dinnerMenu.find(dish => dish.id == id)), 1);
     this.notifyObservers(this.getFullMenu);
     window.localStorage.removeItem('menu');

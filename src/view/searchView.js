@@ -16,7 +16,7 @@ class SearchView {
     loader.className = "spinner-border";
     loader.role = "status";
     loader.innerHTML = '<span class="sr-only">Loading...</span>';
-    this.container.appendChild(loader);
+    // this.container.appendChild(loader);
 
     let content = this.container.querySelector('#totalRow');
     this.container.appendChild(content);
@@ -27,7 +27,6 @@ class SearchView {
 
     let searchbar = document.createElement('div');
     searchbar.id = "search-bar";
-    // document.cookie = 'searchString=chocolate;searchType=Dessert';
     let cookieStringValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchString\s*\=\s*([^;]*).*$)|^.*$/, "$1");
     let cookieTypeValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchType\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
@@ -46,13 +45,13 @@ class SearchView {
     searchbar.innerHTML = searchbarHTML;
     content.appendChild(dishView);
 
-
     let dishItems = document.createElement('div');
     dishItems.id = "dishItems";
     dishItems.className = "col row";
     this.model.setSearchInput(cookieStringValue);
     dishView.appendChild(searchbar);
     dishView.appendChild(dishItems);
+    dishItems.appendChild(loader);
     let dropDown = this.container.querySelector('#drop-down');
     dropDown.value = cookieTypeValue;
 
@@ -61,12 +60,13 @@ class SearchView {
 
   async afterRender() {
     this.model.addObserver(this);
-    this.container.removeChild(loader);
+    this.container.querySelector('#dishItems').removeChild(loader);
+
   }
 
   async update(model, changeDetails) {
     if(changeDetails == model.getSearchInput) {
-      console.log("seeearch");
+      // console.log("seeearch");
       let dishItems = this.container.querySelector('#dishItems');
       dishItems.innerHTML = "";
     }
@@ -79,6 +79,7 @@ class SearchView {
     console.log("query: " + searchInput[0]);
     document.cookie='searchString='+ searchInput[0] + ';searchType='+ searchInput[1];
     let dishes = await this.model.getAllDishes(searchInput[1], searchInput[0]);
+
 
     for(let i = 0; i < dishes.length; i++) {
       let dish = document.createElement('div');

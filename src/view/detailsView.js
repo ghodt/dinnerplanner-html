@@ -8,12 +8,6 @@ class DetailsView {
   }
 
   async render(dishId) {
-    const dish = await this.model.getDish(dishId);
-    this.dish = dish;
-  //  console.log(dish);
-    const num_of_guests = this.model.getNumberOfGuests();
-    // set header and sidebar
-    this.container.insertAdjacentHTML('afterbegin', this.templates.header);
 
     const loader = document.createElement('div');
     loader.id = "loader";
@@ -21,6 +15,11 @@ class DetailsView {
     loader.role = "status";
     loader.innerHTML = '<span class="sr-only">Loading...</span>';
     this.container.appendChild(loader);
+
+    const num_of_guests = this.model.getNumberOfGuests();
+    // set header and sidebar
+    this.container.insertAdjacentHTML('afterbegin', this.templates.header);
+
     let totalRow = this.container.querySelector('#totalRow');
 
     let detailsView = document.createElement('div');
@@ -28,16 +27,18 @@ class DetailsView {
     detailsView.className = "container col-sm-9 text-center full-vh d-flex align-items-center justify-content-center flex-column";
 
     totalRow.appendChild(detailsView);
-
+    detailsView.appendChild(loader);
+    const dish = await this.model.getDish(dishId);
+    this.dish = dish;
     let detailsRow = document.createElement('div');
     detailsRow.id = dishId;
     detailsRow.className = "row details-row";
     detailsView.appendChild(detailsRow);
 
     // DETAILS
+    detailsView.removeChild(loader);
     let detailsDish = document.createElement('div');
     detailsDish.id = "details-dish";
-    // detailsDish.className = "";
 
     detailsDish.innerHTML = `<div id="details-dish-name" class="text-left details-header">
               <h1> <span class="value-main-course-name">` + dish.title + `</span></h1>
@@ -111,7 +112,7 @@ class DetailsView {
   // }
 
   async afterRender() {
-        this.container.removeChild(loader);
+        // this.container.removeChild(loader);
   }
 
   update(model, changeDetails) {

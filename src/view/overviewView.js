@@ -20,7 +20,7 @@ class OverviewView {
       const div1 = dinnerOverview.appendChild(document.createElement('div'));
       div1.id = "my-dinner-go-back";
       const paragraph = dinnerOverview.appendChild(document.createElement('h2'));
-      paragraph.innerHTML = 'My Dinner: <span class="value-num-guests">' + num_of_guests + "</span> people";
+      paragraph.innerHTML = 'My Dinner: <span class="value-num-guests" id="num-guests">' + num_of_guests + "</span> people";
 
       let goBackBtnDiv = div1.appendChild(document.createElement('div'));
       goBackBtnDiv.className = "back-button text-right";
@@ -75,7 +75,9 @@ class OverviewView {
 
     }
 
-    update(payload) {
-      // TODO Lab3
+    update(model, changeDetails) {
+      if(changeDetails == model.getNumberOfGuests) {
+        this.container.querySelector('#num-guests').value = model.getNumberOfGuests;
+      }
     }
 }

@@ -19,7 +19,7 @@ class Navigator {
   }
 
   navigate(message){
-    console.log("Message: " + message);
+    // console.log("Message: " + message);
     switch (message) {
       case "home":
         this.renderHome();
@@ -65,10 +65,10 @@ class Navigator {
     this.homeController.renderView();
   }
 
-  async renderDetails(id) {
+  renderDetails(id) {
     this.clearView();
     this.sidebarController.renderView();
-    await this.detailsController.renderView(id);
+    this.detailsController.renderView(id);
   }
 
   renderSearch(){
