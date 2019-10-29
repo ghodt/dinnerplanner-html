@@ -28,7 +28,7 @@ class DinnerModel {
       input = "";
     }
     if(category == undefined) {
-      category = "";
+      category = "all";
     }
 
     this.searchInput = input + "  " + category;

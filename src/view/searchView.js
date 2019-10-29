@@ -7,7 +7,7 @@ class SearchView {
     this.templates = new Templates(this.model, this.container);
   }
 
-  async render() {
+  async render(searchQuery, searchType) {
     console.log("render search view");
     this.container.insertAdjacentHTML('afterbegin', this.templates.header);
 
@@ -27,13 +27,11 @@ class SearchView {
 
     let searchbar = document.createElement('div');
     searchbar.id = "search-bar";
-    let cookieStringValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchString\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-    let cookieTypeValue = document.cookie.replace(/(?:(?:^|.*;\s*)searchType\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 
     let searchbarHTML = `<h2 id="find-dish">Find a dish</h2>
     <form class="" action="" method="post">
-      <input  onkeydown="return event.key != 'Enter';" id="search-input" type="text" name="search-string" value="` + cookieStringValue + `">
-      <select id="drop-down" name="dish-type" value="` + cookieTypeValue + `">
+      <input  onkeydown="return event.key != 'Enter';" id="search-input" type="text" name="search-string" value="` + searchQuery + `">
+      <select id="drop-down" name="dish-type" value="` + searchType + `">
         <option value="all">All</option>
         <option value="main-course">Main course</option>
         <option value="side-dish">Side dish</option>
@@ -48,13 +46,12 @@ class SearchView {
     let dishItems = document.createElement('div');
     dishItems.id = "dishItems";
     dishItems.className = "col row";
-    this.model.setSearchInput(cookieStringValue);
     dishView.appendChild(searchbar);
     dishView.appendChild(dishItems);
     dishItems.appendChild(loader);
     let dropDown = this.container.querySelector('#drop-down');
-    dropDown.value = cookieTypeValue;
-
+    dropDown.value = searchType;
+    await this.addDishes(dishItems);
     await this.afterRender();
   }
 
@@ -66,9 +63,9 @@ class SearchView {
 
   async update(model, changeDetails) {
     if(changeDetails == model.getSearchInput) {
-      // console.log("seeearch");
       let dishItems = this.container.querySelector('#dishItems');
       dishItems.innerHTML = "";
+      await this.addDishes(dishItems);
     }
   }
 
@@ -79,7 +76,6 @@ class SearchView {
     console.log("query: " + searchInput[0]);
     document.cookie='searchString='+ searchInput[0] + ';searchType='+ searchInput[1];
     let dishes = await this.model.getAllDishes(searchInput[1], searchInput[0]);
-
 
     for(let i = 0; i < dishes.length; i++) {
       let dish = document.createElement('div');
@@ -96,7 +92,6 @@ class SearchView {
       title.className = "value-main-course-name";
       title.innerHTML = dishes[i].title;
       dish.appendChild(title)
-
       dishItems.appendChild(dish);
     }
   }
